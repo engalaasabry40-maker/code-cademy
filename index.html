@@ -350,6 +350,94 @@ nav.links .nav-link:hover::after{transform:scaleX(1);}
 .lib-card .rm{position:absolute;top:8px;right:8px;background:none;border:none;color:#c79aa1;font-size:1rem;line-height:1;padding:2px;}
 .lib-card .rm:hover{color:var(--maroon);}
 .lib-card .lib-download{display:inline-block;margin-top:10px;font-size:0.8rem;font-weight:600;color:var(--maroon-deep);border-bottom:1.5px solid currentColor;}
+/* upgraded library: actions, badges, search, drag & drop, upload progress */
+.lib-card .lib-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap;}
+.lib-card .lib-read{margin-top:10px;font-size:0.8rem;font-weight:600;color:#fff;background:var(--maroon-deep);border:none;border-radius:6px;padding:6px 12px;}
+.lib-card .lib-read:hover{background:var(--maroon);}
+.lib-card .lib-badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;}
+.lib-card .badge-new,.lib-card .badge-read{font-size:0.64rem;font-weight:700;letter-spacing:.04em;padding:3px 7px;border-radius:10px;}
+.lib-card .badge-new{background:var(--cyan);color:var(--graphite);}
+.lib-card .badge-read{background:#e3f2e5;color:#2e7d32;}
+.lib-card.is-read{border-color:rgba(46,125,50,0.35);}
+.lib-card .size{opacity:.8;}
+.lib-search-wrap{margin:0 0 16px;}
+.lib-search{width:100%;max-width:380px;padding:10px 14px;border:1px solid var(--line);border-radius:22px;font:inherit;font-size:0.88rem;background:#fff;color:var(--ink);}
+.lib-search:focus{outline:2px solid var(--maroon);outline-offset:1px;}
+.dropzone{display:flex !important;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;
+  border:2px dashed rgba(92,26,40,0.3);border-radius:10px;padding:22px 14px;background:var(--peach-soft);cursor:pointer;
+  transition:background .2s,border-color .2s,transform .2s;margin-bottom:0 !important;}
+.dropzone:hover,.dropzone.drag{border-color:var(--maroon);background:var(--peach);}
+.dropzone.drag{transform:scale(1.01);}
+.dropzone.has-file{border-style:solid;border-color:var(--cyan-dim);background:#EAF4F0;}
+.dropzone .dz-icon{font-size:1.8rem;}
+.dropzone .dz-text{font-size:0.9rem;font-weight:600;color:var(--maroon-deep);word-break:break-word;}
+.dropzone .dz-hint{font-size:0.72rem;font-weight:400;color:#8a6b73;}
+.dropzone input[type=file]{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;}
+.upload-status{display:flex;flex-direction:column;gap:6px;}
+.upload-status[hidden]{display:none;}
+.up-bar{height:6px;border-radius:4px;background:rgba(92,26,40,0.1);overflow:hidden;}
+.up-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--maroon),var(--cyan-dim));transition:width .3s;}
+.up-bar.busy i{width:40% !important;animation:upSlide 1.1s ease-in-out infinite;}
+@keyframes upSlide{0%{transform:translateX(-100%);}100%{transform:translateX(260%);}}
+.upload-status span{font-size:0.8rem;color:#6b4f56;}
+.upload-status.ok span{color:#2e7d32;}
+.upload-status.err span{color:#B4213D;}
+.lib-submit:disabled{opacity:.6;cursor:wait;transform:none;}
+
+/* reading hub: streak + leaderboard */
+.reading-hub{display:grid;grid-template-columns:minmax(220px,1fr) minmax(240px,1.3fr);gap:16px;margin-bottom:30px;}
+.reading-hub[hidden],.streak-card[hidden]{display:none;}
+.reading-hub.solo{grid-template-columns:1fr;}
+@media(max-width:760px){.reading-hub{grid-template-columns:1fr;}}
+.streak-card{background:linear-gradient(135deg,var(--maroon-deep),var(--maroon) 70%,#7a2c3c);color:#F6E9E3;border-radius:12px;padding:20px;
+  display:grid;grid-template-columns:auto 1fr;gap:6px 14px;align-items:center;}
+.streak-flame{font-size:2.4rem;line-height:1;}
+.streak-card.cold .streak-flame{filter:grayscale(1);opacity:.6;}
+.streak-card.hot .streak-flame{animation:flame 1.6s ease-in-out infinite;}
+@keyframes flame{0%,100%{transform:scale(1) rotate(-3deg);}50%{transform:scale(1.12) rotate(3deg);}}
+@media(prefers-reduced-motion:reduce){.streak-card.hot .streak-flame{animation:none;}}
+.streak-card b{display:block;font-family:var(--serif);font-size:2rem;line-height:1;}
+.streak-card span{font-size:0.8rem;opacity:.85;}
+.streak-week{grid-column:1/-1;display:flex;gap:6px;margin-top:10px;}
+.streak-week i{flex:1;height:26px;border-radius:6px;background:rgba(255,255,255,0.12);font-style:normal;font-size:0.62rem;
+  display:flex;align-items:flex-end;justify-content:center;padding-bottom:3px;color:rgba(255,255,255,0.6);}
+.streak-week i.on{background:var(--cyan);color:var(--graphite);font-weight:700;}
+.leader-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;}
+.leader-card h4{font-family:var(--serif);font-size:1.02rem;color:var(--maroon-deep);margin:0 0 10px;}
+.leader-list{list-style:none;margin:0;padding:0;}
+.leader-list li{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:0.86rem;}
+.leader-list li:last-child{border-bottom:none;}
+.leader-list .rank{width:24px;text-align:center;font-weight:700;color:#a4838a;}
+.leader-list li:nth-child(1) .rank,.leader-list li:nth-child(2) .rank,.leader-list li:nth-child(3) .rank{font-size:1.05rem;}
+.leader-list .nm{flex:1;color:var(--maroon-deep);font-weight:600;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.leader-list .nm small{font-weight:400;color:#a4838a;margin-inline-start:6px;}
+.leader-list .ct{font-size:0.78rem;color:#6b4f56;}
+.leader-list li.me{background:rgba(95,224,200,0.12);border-radius:6px;padding-inline:6px;}
+.leader-list .empty{color:#a4838a;font-size:0.84rem;border:none;}
+
+/* in-site book reader */
+.reader{position:fixed;inset:0;z-index:400;background:rgba(20,23,28,0.92);display:flex;flex-direction:column;}
+.reader[hidden]{display:none;}
+.reader-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;color:#fff;}
+.reader-bar b{font-family:var(--serif);font-size:1rem;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.reader-actions{display:flex;gap:8px;flex:none;}
+.reader-btn{color:#fff;background:rgba(255,255,255,0.12);border:none;border-radius:6px;padding:7px 12px;font-size:0.82rem;font-weight:600;}
+.reader-btn:hover{background:rgba(255,255,255,0.22);}
+.reader-body{flex:1;min-height:0;padding:0 18px 18px;display:flex;align-items:center;justify-content:center;}
+.reader-body iframe{width:100%;height:100%;border:none;border-radius:8px;background:#fff;}
+.reader-body img{max-width:100%;max-height:100%;object-fit:contain;border-radius:8px;}
+.reader-body video,.reader-body audio{max-width:100%;max-height:100%;}
+.reader-body .reader-msg{color:#fff;text-align:center;font-size:0.95rem;line-height:1.6;}
+
+/* live toasts */
+.toasts{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:500;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none;width:min(92vw,420px);}
+.toast{pointer-events:auto;background:var(--graphite);color:#fff;border-radius:10px;padding:12px 16px;font-size:0.86rem;line-height:1.45;
+  box-shadow:0 14px 30px -10px rgba(0,0,0,0.45);border-inline-start:4px solid var(--cyan);width:100%;
+  animation:toastIn .35s ease-out;}
+.toast.err{border-inline-start-color:#ff6b81;}
+.toast b{display:block;margin-bottom:2px;}
+.toast.out{opacity:0;transform:translateY(10px);transition:opacity .3s,transform .3s;}
+@keyframes toastIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
 
 /* accounts, auth modal, progress */
 .auth-bar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
@@ -424,6 +512,7 @@ html[dir="rtl"] .dash-sidebar{border-right:none;border-left:1px solid var(--line
 html[dir="rtl"] .dash-tab{text-align:right;}
 .dash-tab:hover{background:rgba(92,26,40,0.06);}
 .dash-tab.active{background:var(--maroon-deep);color:#fff;}
+.dash-tab[hidden]{display:none;}
 .dash-main{padding:30px 26px 70px;min-width:0;}
 .dash-view[hidden]{display:none;}
 .dash-view h3{font-family:var(--serif);font-size:1.4rem;color:var(--maroon-deep);margin:0 0 6px;}
@@ -1232,6 +1321,20 @@ html[dir="rtl"] .scene-svg{transform-origin:45% 60%;}
         <h3>Welcome back, <span id="ovName">there</span>.</h3>
         <p class="dash-sub" id="ovSub">Here's what's new in your club.</p>
         <div class="dash-stats" id="ovStats"></div>
+        <div class="reading-hub" id="readingHub" hidden>
+          <div class="streak-card" id="streakCard">
+            <div class="streak-flame" aria-hidden="true">🔥</div>
+            <div>
+              <b id="streakDays">0</b>
+              <span id="streakLabel">day reading streak</span>
+            </div>
+            <div class="streak-week" id="streakWeek" aria-hidden="true"></div>
+          </div>
+          <div class="leader-card">
+            <h4 id="leaderTitle">Top readers this week</h4>
+            <ol class="leader-list" id="leaderList"></ol>
+          </div>
+        </div>
         <div id="ovNotifPreview"></div>
       </div>
 
@@ -1265,9 +1368,18 @@ html[dir="rtl"] .scene-svg{transform-origin:45% 60%;}
           </div>
           <div class="full">
             <label for="libFile">File (PDF, image, or document)</label>
-            <input id="libFile" type="file" accept=".pdf,.png,.jpg,.jpeg,.doc,.docx,.epub" required>
+            <label class="dropzone" id="dropzone" for="libFile">
+              <span class="dz-icon" aria-hidden="true">📚</span>
+              <span class="dz-text" id="dzText">Drag a book here, or click to choose a file</span>
+              <span class="dz-hint">PDF, Word, EPUB, PowerPoint or image · up to 50 MB · Arabic file names are fine</span>
+              <input id="libFile" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp,.doc,.docx,.epub,.ppt,.pptx,.mp3,.mp4" required>
+            </label>
           </div>
-          <button type="submit" class="lib-submit">Upload to club</button>
+          <div class="full upload-status" id="uploadStatus" hidden>
+            <div class="up-bar"><i id="upBarFill"></i></div>
+            <span id="upMsg"></span>
+          </div>
+          <button type="submit" class="lib-submit" id="libSubmit">Upload to club</button>
           <p class="lib-note">Every student in that club sees it immediately — once they've unlocked this level.</p>
         </form>
         <div class="lib-tabs" id="libTabs" hidden>
@@ -1287,6 +1399,9 @@ html[dir="rtl"] .scene-svg{transform-origin:45% 60%;}
           <button class="level-tab" data-level="Advanced (C1-C2)" type="button"><span class="lv-dot"></span>Advanced (C1-C2)</button>
         </div>
 
+        <div class="lib-search-wrap">
+          <input type="search" id="libSearch" class="lib-search" placeholder="Search books and materials…" aria-label="Search materials">
+        </div>
         <div id="levelLockedMsg" class="lib-empty" hidden>🔒 Finish the previous level and pass its exam to unlock this one.</div>
         <div class="lib-grid" id="libGrid"></div>
 
@@ -1588,6 +1703,18 @@ html[dir="rtl"] .scene-svg{transform-origin:45% 60%;}
   <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M17.6 6.3A8.5 8.5 0 0 0 4.2 17l-.9 3.3 3.4-.9a8.5 8.5 0 0 0 12.9-7.4c0-2.3-.9-4.4-2-6.1zm-5.6 13a7 7 0 0 1-3.6-1l-.3-.1-2.5.7.7-2.4-.2-.3a7 7 0 1 1 5.9 3.1zm3.9-5.3c-.2-.1-1.3-.6-1.5-.7-.2-.1-.3-.1-.5.1s-.6.7-.8.9-.4.2-.6.1a5.8 5.8 0 0 1-2.8-2.5c-.2-.4.2-.4.5-.7.2-.2.2-.4.1-.6L9 8.9c-.1-.2-.3-.2-.5-.2h-.4c-.2 0-.5.1-.7.4-.2.3-.7.8-.7 1.8s.7 2.1 1.4 2.8c1.4 1.5 2.6 2.1 4.2 2.3.5.1 1 0 1.3-.3.3-.2.7-.6.8-.9.1-.2.1-.5 0-.6z"/></svg>
 </a>
 
+<div class="reader" id="reader" hidden role="dialog" aria-modal="true" aria-labelledby="readerTitle">
+  <div class="reader-bar">
+    <b id="readerTitle">Book</b>
+    <div class="reader-actions">
+      <a id="readerDownload" class="reader-btn" href="#" target="_blank" rel="noopener">Download</a>
+      <button id="readerClose" class="reader-btn" type="button" aria-label="Close">✕</button>
+    </div>
+  </div>
+  <div class="reader-body" id="readerBody"></div>
+</div>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 document.getElementById('featureVideo').addEventListener('click', function(){
@@ -1661,6 +1788,66 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
   const SUPABASE_KEY = 'sb_publishable_x7AQ0xQl8qqOH3iDKqxddg_-7fbStUh';
   const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
   window.__sb = sb; // handy for debugging in the browser console
+
+  // ---------- small helpers ----------
+  function isAr(){ return document.documentElement.lang === 'ar'; }
+  function t(en, ar){ return isAr() ? ar : en; }
+  function esc(v){
+    return String(v == null ? '' : v).replace(/[&<>"']/g, function(c){
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+    });
+  }
+  // Supabase Storage only accepts plain ASCII keys, so "·", Arabic letters,
+  // brackets, emoji etc. in a file name make it fail with "Invalid key".
+  // The real file name is kept in the database (file_name) and reused on download.
+  function storageSlug(str, fallback){
+    const out = String(str || '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^A-Za-z0-9._-]+/g, '_').replace(/_+/g, '_').replace(/^[_.-]+|[_.-]+$/g, '').slice(0, 60);
+    return out || fallback;
+  }
+  function buildStoragePath(club, level, fileName){
+    const m = String(fileName).match(/\.([A-Za-z0-9]{1,8})$/);
+    const ext = m ? '.' + m[1].toLowerCase() : '';
+    const base = m ? fileName.slice(0, -m[0].length) : fileName;
+    const rand = Math.random().toString(36).slice(2, 8);
+    return storageSlug(club, 'club') + '/' + storageSlug(level, 'level') + '/' +
+      Date.now() + '_' + rand + '_' + storageSlug(base, 'file') + ext;
+  }
+  function fileExt(name){ const m = String(name || '').match(/\.([a-z0-9]+)$/i); return m ? m[1].toLowerCase() : ''; }
+  function fileIcon(ext){
+    if(ext === 'pdf') return '📕';
+    if(ext === 'epub') return '📘';
+    if(ext === 'doc' || ext === 'docx') return '📝';
+    if(ext === 'ppt' || ext === 'pptx') return '📊';
+    if(['png','jpg','jpeg','webp','gif'].indexOf(ext) !== -1) return '🖼️';
+    if(ext === 'mp3') return '🎧';
+    if(ext === 'mp4') return '🎬';
+    return '📄';
+  }
+  function fmtSize(bytes){
+    if(!bytes) return '';
+    if(bytes < 1024 * 1024) return Math.max(1, Math.round(bytes / 1024)) + ' KB';
+    return (bytes / 1048576).toFixed(1) + ' MB';
+  }
+  function publicUrl(path){ return sb.storage.from('materials').getPublicUrl(path).data.publicUrl; }
+  function downloadUrl(item){
+    return sb.storage.from('materials').getPublicUrl(item.file_path, { download: item.file_name || true }).data.publicUrl;
+  }
+  // a database feature from supabase/schema.sql that hasn't been installed yet
+  function isMissing(err){
+    return !!err && (err.code === 'PGRST202' || err.code === 'PGRST205' || err.code === '42P01' || err.code === '42883' ||
+      /could not find the (function|table)|does not exist|schema cache/i.test(err.message || ''));
+  }
+  const toastsEl = document.getElementById('toasts');
+  function toast(title, body, isErr){
+    if(!toastsEl) return;
+    const el = document.createElement('div');
+    el.className = 'toast' + (isErr ? ' err' : '');
+    el.innerHTML = '<b>' + esc(title) + '</b>' + (body ? esc(body) : '');
+    toastsEl.appendChild(el);
+    setTimeout(function(){ el.classList.add('out'); }, 5200);
+    setTimeout(function(){ el.remove(); }, 5600);
+  }
 
   // full-page auth screen
   const authPage = document.getElementById('authPage');
@@ -1787,6 +1974,21 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
     if(/failed to fetch|networkerror|load failed/i.test(msg)){
       return "Can't reach the server. If you opened this page by double-clicking the file on your computer, that won't work — please host it on a real web address (e.g. Netlify, GitHub Pages, or any web server) and open it from there. If it's already hosted, check your internet connection and make sure the Supabase project isn't paused (Supabase dashboard → look for a \"Restore project\" button).";
     }
+    if(/invalid key/i.test(msg)){
+      return t('The file name has characters storage can\'t accept. Please refresh the page (Ctrl+F5) so the latest version of the site loads, then try again.',
+               'اسم الملف يحتوي على رموز لا يقبلها التخزين. حدّث الصفحة (Ctrl+F5) لتحميل أحدث نسخة من الموقع ثم حاول مرة أخرى.');
+    }
+    if(/bucket not found/i.test(msg)){
+      return t('The "materials" storage bucket doesn\'t exist yet — run supabase/schema.sql in the Supabase SQL editor.',
+               'مخزن الملفات "materials" غير موجود — شغّل ملف supabase/schema.sql في محرر SQL في Supabase.');
+    }
+    if(/row-level security|violates.*policy|unauthorized|not allowed/i.test(msg)){
+      return t('Your account isn\'t allowed to do this. Uploading needs a teacher account (and supabase/schema.sql installed).',
+               'حسابك غير مسموح له بهذا الإجراء. الرفع يحتاج حساب معلم (مع تثبيت ملف supabase/schema.sql).');
+    }
+    if(/payload too large|maximum allowed size|exceeded/i.test(msg)){
+      return t('The file is too big — the limit is 50 MB.', 'الملف كبير جداً — الحد الأقصى 50 ميجابايت.');
+    }
     return msg;
   }
 
@@ -1822,7 +2024,7 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
 
     let signUpResult;
     try{
-      signUpResult = await sb.auth.signUp({ email, password });
+      signUpResult = await sb.auth.signUp({ email, password, options: { data: { full_name: full_name, role: role, club: club } } });
     } catch(err){
       errEl.textContent = friendlyErrorMessage(err);
       return;
@@ -1833,7 +2035,7 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
       errEl.textContent = 'Account created — check your email to confirm it, then sign in.';
       return;
     }
-    const { error: profErr } = await sb.from('profiles').insert({ id: data.user.id, full_name, role, club });
+    const { error: profErr } = await sb.from('profiles').upsert({ id: data.user.id, full_name, role, club }, { onConflict: 'id', ignoreDuplicates: true });
     if(profErr){ errEl.textContent = profErr.message; return; }
     signupForm.reset();
     wantDashboard = true;
@@ -1914,19 +2116,29 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
       currentProfile = null;
       currentEmail = '';
       dashboardPage.hidden = true;
+      stopRealtime();
       return;
     }
 
     currentEmail = session.user.email || '';
     currentProfile = await loadProfile(session.user.id);
     if(!currentProfile){
-      return; // signup row still being written — onAuthStateChange will fire again
+      // e.g. signed up with "confirm email" on: build the profile from the sign-up details
+      const md = session.user.user_metadata || {};
+      if(md.full_name){
+        await sb.from('profiles').upsert({
+          id: session.user.id, full_name: md.full_name,
+          role: md.role === 'teacher' ? 'teacher' : 'student', club: md.club || null
+        }, { onConflict: 'id', ignoreDuplicates: true });
+        currentProfile = await loadProfile(session.user.id);
+      }
+      if(!currentProfile) return; // signup row still being written — onAuthStateChange will fire again
     }
 
     const roleLabel = isTeacher() ? 'Teacher' : 'Student';
     dashAvatar.textContent = (currentProfile.full_name || '?').trim().charAt(0).toUpperCase();
     dashName.textContent = currentProfile.full_name;
-    dashRoleClub.innerHTML = roleLabel + (currentProfile.club ? ' · ' + currentProfile.club : '');
+    dashRoleClub.textContent = roleLabel + (currentProfile.club ? ' · ' + currentProfile.club : '');
     ovName.textContent = currentProfile.full_name.split(' ')[0];
 
     tabStudents.hidden = !isTeacher();
@@ -1953,7 +2165,9 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
     profClub.value = currentProfile.club || '—';
 
     await loadPassedLevels();
+    await loadReadingHub(); // also fills readIds, used by the material cards
     await Promise.all([loadMaterials(), loadOverviewStats(), loadNotifications()]);
+    startRealtime();
     if(isTeacher()) await loadStudentsForProgress(); else await loadMyProgress();
 
     if(wantDashboard) openDashboard();
@@ -2054,19 +2268,12 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
       query = query.eq('club', materialsFilter);
     }
     const { data, error } = await query;
-    if(error){ libGrid.innerHTML = '<div class="lib-empty">' + error.message + '</div>'; }
-    else if(!data || data.length === 0){
-      libGrid.innerHTML = '<div class="lib-empty">No materials for this level yet.</div>';
+    if(error){
+      materialsCache = [];
+      libGrid.innerHTML = '<div class="lib-empty">' + esc(friendlyErrorMessage(error)) + '</div>';
     } else {
-      libGrid.innerHTML = data.map(function(item){
-        const url = sb.storage.from('materials').getPublicUrl(item.file_path).data.publicUrl;
-        return '<div class="lib-card">' +
-          '<span class="ftype">📄</span>' +
-          '<h5>' + item.title + '</h5>' +
-          '<div class="meta">' + item.club + ' · ' + item.level + '</div>' +
-          '<a class="lib-download" href="' + url + '" target="_blank" rel="noopener">Download</a>' +
-        '</div>';
-      }).join('');
+      materialsCache = data || [];
+      renderMaterials();
     }
 
     // exam call-to-action / admin, scoped to the level now showing
@@ -2090,6 +2297,227 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
     }
   }
 
+  // ---------- material cards ----------
+  const libSearch = document.getElementById('libSearch');
+  let materialsCache = [];
+
+  function renderMaterials(){
+    const q = (libSearch && libSearch.value || '').trim().toLowerCase();
+    const items = !q ? materialsCache : materialsCache.filter(function(m){
+      return (m.title + ' ' + (m.file_name || '') + ' ' + m.club).toLowerCase().indexOf(q) !== -1;
+    });
+    if(materialsCache.length === 0){
+      libGrid.innerHTML = '<div class="lib-empty">No materials for this level yet.</div>';
+      return;
+    }
+    if(items.length === 0){
+      libGrid.innerHTML = '<div class="lib-empty">' + esc(t('Nothing matches “' + q + '”.', 'لا توجد نتائج لـ «' + q + '».')) + '</div>';
+      return;
+    }
+    const newSince = Date.now() - 3 * 86400000; // "NEW" badge for 3 days
+    libGrid.innerHTML = items.map(function(item){
+      const ext = fileExt(item.file_name || item.file_path);
+      const isNew = new Date(item.created_at).getTime() > newSince;
+      const isRead = readIds.has(item.id);
+      const badges = (isNew ? '<span class="badge-new">' + t('NEW', 'جديد') + '</span>' : '') +
+                     (isRead ? '<span class="badge-read">✓ ' + t('READ', 'قرأته') + '</span>' : '');
+      return '<div class="lib-card' + (isRead ? ' is-read' : '') + '">' +
+        (isTeacher() ? '<button class="rm" type="button" data-del="' + item.id + '" title="Delete" aria-label="Delete">✕</button>' : '') +
+        (badges ? '<div class="lib-badges">' + badges + '</div>' : '') +
+        '<span class="ftype">' + fileIcon(ext) + '</span>' +
+        '<h5>' + esc(item.title) + '</h5>' +
+        '<div class="meta">' + esc(item.club) + ' · ' + esc(item.level) +
+          (item.file_size ? ' · <span class="size">' + fmtSize(item.file_size) + '</span>' : '') + '</div>' +
+        '<div class="lib-actions">' +
+          '<button class="lib-read" type="button" data-open="' + item.id + '">' + t('Read', 'اقرأ') + '</button>' +
+          '<a class="lib-download" data-dl="' + item.id + '" href="' + esc(downloadUrl(item)) + '" target="_blank" rel="noopener">' + t('Download', 'تحميل') + '</a>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+  }
+
+  function findMaterial(id){
+    return materialsCache.find(function(m){ return String(m.id) === String(id); });
+  }
+
+  if(libSearch) libSearch.addEventListener('input', renderMaterials);
+
+  libGrid.addEventListener('click', function(e){
+    const openBtn = e.target.closest('[data-open]');
+    const delBtn = e.target.closest('[data-del]');
+    const dl = e.target.closest('[data-dl]');
+    if(openBtn){ const m = findMaterial(openBtn.dataset.open); if(m) openReader(m); }
+    else if(delBtn){ const m = findMaterial(delBtn.dataset.del); if(m) deleteMaterial(m); }
+    else if(dl){ const m = findMaterial(dl.dataset.dl); if(m) logRead(m); }
+  });
+
+  async function deleteMaterial(item){
+    if(!confirm(t('Delete “' + item.title + '”? Students will no longer see it.', 'حذف «' + item.title + '»؟ لن يراه الطلاب بعد الآن.'))) return;
+    const { data, error } = await sb.from('materials').delete().eq('id', item.id).select('id');
+    if(error || !data || data.length === 0){
+      toast(t('Couldn’t delete', 'تعذّر الحذف'), error ? friendlyErrorMessage(error) : t('You don’t have permission to delete this.', 'ليست لديك صلاحية حذف هذا الملف.'), true);
+      return;
+    }
+    await sb.storage.from('materials').remove([item.file_path]);
+    toast(t('Deleted', 'تم الحذف'), item.title);
+    await loadMaterials();
+    await loadOverviewStats();
+  }
+
+  // ---------- in-site book reader ----------
+  const reader = document.getElementById('reader');
+  const readerTitle = document.getElementById('readerTitle');
+  const readerBody = document.getElementById('readerBody');
+  const readerDownload = document.getElementById('readerDownload');
+
+  function openReader(item){
+    const ext = fileExt(item.file_name || item.file_path);
+    const url = publicUrl(item.file_path);
+    readerTitle.textContent = item.title;
+    readerDownload.href = downloadUrl(item);
+    let html;
+    if(ext === 'pdf'){
+      html = '<iframe src="' + esc(url) + '#view=FitH" title="' + esc(item.title) + '"></iframe>';
+    } else if(['png','jpg','jpeg','webp','gif'].indexOf(ext) !== -1){
+      html = '<img src="' + esc(url) + '" alt="' + esc(item.title) + '">';
+    } else if(ext === 'mp4'){
+      html = '<video src="' + esc(url) + '" controls playsinline></video>';
+    } else if(ext === 'mp3'){
+      html = '<audio src="' + esc(url) + '" controls></audio>';
+    } else if(['doc','docx','ppt','pptx'].indexOf(ext) !== -1){
+      html = '<iframe src="https://view.officeapps.live.com/op/embed.aspx?src=' + encodeURIComponent(url) + '" title="' + esc(item.title) + '"></iframe>';
+    } else {
+      html = '<p class="reader-msg">' + esc(t('This file type can’t be previewed in the browser — use Download to open it.',
+        'لا يمكن عرض هذا النوع من الملفات داخل المتصفح — استخدم زر التحميل لفتحه.')) + '</p>';
+    }
+    readerBody.innerHTML = html;
+    reader.hidden = false;
+    document.body.style.overflow = 'hidden';
+    logRead(item);
+  }
+  function closeReader(){
+    reader.hidden = true;
+    readerBody.innerHTML = ''; // stops audio / video
+    document.body.style.overflow = '';
+  }
+  document.getElementById('readerClose').addEventListener('click', closeReader);
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && !reader.hidden) closeReader(); });
+
+  // ---------- reading tracker: streaks + club leaderboard ----------
+  const readingHub = document.getElementById('readingHub');
+  const streakCard = document.getElementById('streakCard');
+  const streakDays = document.getElementById('streakDays');
+  const streakLabel = document.getElementById('streakLabel');
+  const streakWeek = document.getElementById('streakWeek');
+  const leaderTitle = document.getElementById('leaderTitle');
+  const leaderList = document.getElementById('leaderList');
+  let readIds = new Set();
+  let readDays = new Set();
+  let readsAvailable = true;
+
+  function isoDay(offset){
+    const d = new Date();
+    d.setUTCDate(d.getUTCDate() + (offset || 0));
+    return d.toISOString().slice(0, 10); // the database stores read_on in UTC
+  }
+
+  async function logRead(item){
+    if(!readsAvailable || !currentProfile || isTeacher()) return;
+    const today = isoDay(0);
+    if(readIds.has(item.id) && readDays.has(today)) return;
+    const { error } = await sb.from('material_reads').upsert(
+      { student_id: currentProfile.id, material_id: item.id, club: currentProfile.club, read_on: today },
+      { onConflict: 'student_id,material_id,read_on', ignoreDuplicates: true });
+    if(error){ if(isMissing(error)) readsAvailable = false; return; }
+    const firstToday = !readDays.has(today);
+    readIds.add(item.id);
+    readDays.add(today);
+    renderMaterials();
+    await loadReadingHub();
+    if(firstToday){
+      toast('🔥 ' + t('Streak: ' + streakDays.textContent + ' day(s)', 'سلسلة القراءة: ' + streakDays.textContent + ' يوم'),
+            t('Nice — keep reading every day!', 'رائع — استمر في القراءة كل يوم!'));
+    }
+  }
+
+  function renderStreak(){
+    let streak = 0;
+    let offset = readDays.has(isoDay(0)) ? 0 : -1; // today not read yet → the streak is still alive from yesterday
+    while(readDays.has(isoDay(offset))){ streak++; offset--; }
+    const readToday = readDays.has(isoDay(0));
+    streakDays.textContent = streak;
+    streakCard.classList.toggle('hot', streak > 0 && readToday);
+    streakCard.classList.toggle('cold', streak === 0);
+    streakLabel.textContent = streak === 0
+      ? t('Open any book to start a reading streak', 'افتح أي كتاب لتبدأ سلسلة القراءة')
+      : (readToday ? t('day reading streak — keep it up!', 'يوم متتالٍ من القراءة — واصل!')
+                   : t('day streak — read today to keep it alive', 'يوم متتالٍ — اقرأ اليوم حتى لا تنقطع السلسلة'));
+    const locale = isAr() ? 'ar' : 'en';
+    let cells = '';
+    for(let i = -6; i <= 0; i++){
+      const day = isoDay(i);
+      const label = new Date(day + 'T12:00:00Z').toLocaleDateString(locale, { weekday: 'narrow', timeZone: 'UTC' });
+      cells += '<i class="' + (readDays.has(day) ? 'on' : '') + '" title="' + day + '">' + esc(label) + '</i>';
+    }
+    streakWeek.innerHTML = cells;
+  }
+
+  async function loadReadingHub(){
+    if(!readingHub || !currentProfile || !readsAvailable) return;
+    if(!isTeacher()){
+      const { data, error } = await sb.from('material_reads').select('material_id, read_on')
+        .eq('student_id', currentProfile.id).order('read_on', { ascending: false }).limit(1000);
+      if(error){ if(isMissing(error)){ readsAvailable = false; readingHub.hidden = true; } return; }
+      readIds = new Set((data || []).map(function(r){ return r.material_id; }));
+      readDays = new Set((data || []).map(function(r){ return r.read_on; }));
+      renderStreak();
+    }
+    streakCard.hidden = isTeacher();
+    const { data: board, error: lbErr } = await sb.rpc('club_leaderboard', { p_club: isTeacher() ? null : currentProfile.club, p_days: 7 });
+    if(lbErr){ if(isMissing(lbErr)){ readsAvailable = false; readingHub.hidden = true; } return; }
+    readingHub.hidden = false;
+    readingHub.classList.toggle('solo', isTeacher());
+    leaderTitle.textContent = isTeacher()
+      ? t('Top readers this week — all clubs', 'أكثر الطلاب قراءةً هذا الأسبوع — كل النوادي')
+      : t('Top readers in ' + currentProfile.club + ' this week', 'الأكثر قراءةً في ' + currentProfile.club + ' هذا الأسبوع');
+    const medals = ['🥇', '🥈', '🥉'];
+    leaderList.innerHTML = (board && board.length) ? board.map(function(r, i){
+      return '<li class="' + (r.student_id === currentProfile.id ? 'me' : '') + '">' +
+        '<span class="rank">' + (medals[i] || (i + 1)) + '</span>' +
+        '<span class="nm">' + esc(r.full_name || '—') + (isTeacher() && r.club ? '<small>' + esc(r.club) + '</small>' : '') + '</span>' +
+        '<span class="ct">' + r.books + ' ' + t(r.books === 1 ? 'book' : 'books', 'كتاب') + '</span>' +
+      '</li>';
+    }).join('') : '<li class="empty">' + esc(t('No one has opened a book this week yet — be the first!', 'لم يفتح أحد كتاباً هذا الأسبوع بعد — كن الأول!')) + '</li>';
+  }
+
+  // ---------- live updates (Supabase Realtime) ----------
+  let rtChannel = null;
+  function startRealtime(){
+    if(rtChannel || !sb.channel) return;
+    rtChannel = sb.channel('cc-live')
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'materials' }, function(payload){
+        const m = payload.new || {};
+        if(!currentProfile || m.uploaded_by === currentProfile.id) return;
+        if(!isTeacher() && m.club !== currentProfile.club) return;
+        toast('📚 ' + t('New book added', 'تمت إضافة كتاب جديد'), m.title + ' · ' + m.level);
+        loadMaterials(); loadOverviewStats();
+      })
+      .on('postgres_changes', { event: 'DELETE', schema: 'public', table: 'materials' }, function(){
+        if(currentProfile){ loadMaterials(); loadOverviewStats(); }
+      })
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'notifications' }, function(payload){
+        const n = payload.new || {};
+        if(!currentProfile || n.created_by === currentProfile.id) return;
+        if(!isTeacher() && n.club && n.club !== currentProfile.club) return;
+        toast('🔔 ' + n.title, n.body);
+        loadNotifications();
+      })
+      .subscribe();
+  }
+  function stopRealtime(){
+    if(rtChannel){ sb.removeChannel(rtChannel); rtChannel = null; }
+  }
+
   if(libTabs){
     libTabs.addEventListener('click', function(e){
       const btn = e.target.closest('.lib-tab');
@@ -2101,24 +2529,96 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
     });
   }
 
+  // ---------- upload (drag & drop, progress, safe storage keys) ----------
+  const MAX_UPLOAD = 50 * 1024 * 1024;
+  const libFile = document.getElementById('libFile');
+  const libTitle = document.getElementById('libTitle');
+  const libSubmit = document.getElementById('libSubmit');
+  const dropzone = document.getElementById('dropzone');
+  const dzText = document.getElementById('dzText');
+  const uploadStatus = document.getElementById('uploadStatus');
+  const upMsg = document.getElementById('upMsg');
+  const upBar = uploadStatus.querySelector('.up-bar');
+  const upBarFill = document.getElementById('upBarFill');
+
+  function setUploadStatus(state, msg){
+    uploadStatus.hidden = !state;
+    uploadStatus.classList.toggle('ok', state === 'ok');
+    uploadStatus.classList.toggle('err', state === 'err');
+    upBar.classList.toggle('busy', state === 'busy');
+    upBarFill.style.width = state === 'ok' ? '100%' : '0';
+    upMsg.textContent = msg || '';
+  }
+  function showPickedFile(){
+    const f = libFile.files[0];
+    dropzone.classList.toggle('has-file', !!f);
+    dzText.textContent = f ? f.name + ' · ' + fmtSize(f.size) : t('Drag a book here, or click to choose a file', 'اسحب كتاباً هنا أو اضغط لاختيار ملف');
+  }
+  libFile.addEventListener('change', function(){
+    const f = libFile.files[0];
+    showPickedFile();
+    setUploadStatus(null);
+    if(f && !libTitle.value.trim()) libTitle.value = f.name.replace(/\.[^.]+$/, '').replace(/[_\s]+/g, ' ').trim();
+  });
+  ['dragenter', 'dragover'].forEach(function(ev){
+    dropzone.addEventListener(ev, function(e){ e.preventDefault(); dropzone.classList.add('drag'); });
+  });
+  ['dragleave', 'drop'].forEach(function(ev){
+    dropzone.addEventListener(ev, function(e){ e.preventDefault(); dropzone.classList.remove('drag'); });
+  });
+  dropzone.addEventListener('drop', function(e){
+    const files = e.dataTransfer && e.dataTransfer.files;
+    if(!files || !files.length) return;
+    libFile.files = files;
+    libFile.dispatchEvent(new Event('change'));
+  });
+
   libForm.addEventListener('submit', async function(e){
     e.preventDefault();
     const club = document.getElementById('libClub').value;
     const level = document.getElementById('libLevel').value;
-    const title = document.getElementById('libTitle').value.trim();
-    const fileInput = document.getElementById('libFile');
-    const file = fileInput.files[0];
-    if(!title || !file) return;
-    const path = club.replace(/\s+/g, '_') + '/' + level.replace(/[^\w]+/g, '_') + '/' + Date.now() + '_' + file.name;
-    const { error: upErr } = await sb.storage.from('materials').upload(path, file);
-    if(upErr){ alert(upErr.message); return; }
-    const { error: insErr } = await sb.from('materials').insert({
-      club: club, level: level, title: title, file_path: path, uploaded_by: currentProfile.id
-    });
-    if(insErr){ alert(insErr.message); return; }
-    libForm.reset();
-    await loadMaterials();
-    await loadOverviewStats();
+    const title = libTitle.value.trim();
+    const file = libFile.files[0];
+    if(!title || !file){ setUploadStatus('err', t('Add a title and choose a file first.', 'أضف عنواناً واختر ملفاً أولاً.')); return; }
+    if(file.size > MAX_UPLOAD){ setUploadStatus('err', t('The file is too big — the limit is 50 MB.', 'الملف كبير جداً — الحد الأقصى 50 ميجابايت.')); return; }
+
+    const path = buildStoragePath(club, level, file.name);
+    libSubmit.disabled = true;
+    setUploadStatus('busy', t('Uploading “' + file.name + '”…', 'جارٍ رفع «' + file.name + '»…'));
+    try{
+      const { error: upErr } = await sb.storage.from('materials').upload(path, file, {
+        contentType: file.type || 'application/octet-stream', cacheControl: '3600', upsert: false
+      });
+      if(upErr) throw upErr;
+
+      const row = { club: club, level: level, title: title, file_path: path, uploaded_by: currentProfile.id,
+                    file_name: file.name, file_size: file.size, mime_type: file.type || null };
+      let { error: insErr } = await sb.from('materials').insert(row);
+      if(insErr && /file_name|file_size|mime_type/.test(insErr.message || '')){
+        // database from before schema.sql — save the essentials only
+        delete row.file_name; delete row.file_size; delete row.mime_type;
+        ({ error: insErr } = await sb.from('materials').insert(row));
+      }
+      if(insErr){
+        await sb.storage.from('materials').remove([path]); // don't leave an orphan file behind
+        throw insErr;
+      }
+
+      libForm.reset();
+      document.getElementById('libClub').value = club;
+      showPickedFile();
+      setUploadStatus('ok', t('Uploaded! Everyone in ' + club + ' can see “' + title + '” now.',
+                              'تم الرفع! يمكن لكل طلاب ' + club + ' رؤية «' + title + '» الآن.'));
+      // jump to where the new book lives so the teacher sees it straight away
+      currentLevel = level;
+      if(materialsFilter !== 'all' && materialsFilter !== club) applyClubFilter(club);
+      else await loadMaterials();
+      await loadOverviewStats();
+    } catch(err){
+      setUploadStatus('err', friendlyErrorMessage(err));
+    } finally {
+      libSubmit.disabled = false;
+    }
   });
 
   // ---------- taking the exam (student) ----------
@@ -2130,26 +2630,42 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
     return arr;
   }
 
+  // 'server' = get_exam()/submit_exam() from schema.sql (answers never reach the browser);
+  // 'client' = older database without those functions.
+  let examMode = 'server';
+
   if(startExamBtn){
     startExamBtn.addEventListener('click', async function(){
-      const { data, error } = await sb.from('exam_questions').select('*')
-        .eq('club', currentProfile.club).eq('level', currentLevel).order('created_at');
-      if(error){ alert(error.message); return; }
-      if(!data || data.length === 0){ alert('No exam questions yet for this level — ask your teacher to add some.'); return; }
-      currentExamQuestions = data.map(function(q){
-        const options = shuffleArr([
-          { text: q.option_a, correct: true },
-          { text: q.option_b, correct: false },
-          { text: q.option_c, correct: false },
-          { text: q.option_d, correct: false }
-        ]);
-        return { question: q.question, options: options };
-      });
-      examTitle.textContent = 'Level exam — ' + currentLevel;
+      const rpc = await sb.rpc('get_exam', { p_club: currentProfile.club, p_level: currentLevel });
+      if(!rpc.error){
+        examMode = 'server';
+        currentExamQuestions = (rpc.data || []).map(function(q){
+          return { id: q.id, question: q.question, options: (q.options || []).map(function(o){ return { text: o }; }) };
+        });
+      } else if(isMissing(rpc.error)){
+        examMode = 'client';
+        const { data, error } = await sb.from('exam_questions').select('*')
+          .eq('club', currentProfile.club).eq('level', currentLevel).order('created_at');
+        if(error){ alert(friendlyErrorMessage(error)); return; }
+        currentExamQuestions = (data || []).map(function(q){
+          const options = shuffleArr([
+            { text: q.option_a, correct: true },
+            { text: q.option_b, correct: false },
+            { text: q.option_c, correct: false },
+            { text: q.option_d, correct: false }
+          ]);
+          return { id: q.id, question: q.question, options: options };
+        });
+      } else {
+        alert(friendlyErrorMessage(rpc.error));
+        return;
+      }
+      if(currentExamQuestions.length === 0){ alert(t('No exam questions yet for this level — ask your teacher to add some.', 'لا توجد أسئلة امتحان لهذا المستوى بعد — اطلب من معلمك إضافتها.')); return; }
+      examTitle.textContent = t('Level exam — ', 'امتحان المستوى — ') + currentLevel;
       examQuestionsEl.innerHTML = currentExamQuestions.map(function(q, qi){
-        return '<div class="exam-q"><p>' + (qi + 1) + '. ' + q.question + '</p>' +
+        return '<div class="exam-q"><p>' + (qi + 1) + '. ' + esc(q.question) + '</p>' +
           q.options.map(function(o, oi){
-            return '<label class="exam-opt"><input type="radio" name="examQ' + qi + '" value="' + oi + '"> ' + o.text + '</label>';
+            return '<label class="exam-opt"><input type="radio" name="examQ' + qi + '" value="' + oi + '"> ' + esc(o.text) + '</label>';
           }).join('') +
           '</div>';
       }).join('');
@@ -2161,18 +2677,34 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
 
   if(submitExamBtn){
     submitExamBtn.addEventListener('click', async function(){
-      let correctCount = 0;
-      currentExamQuestions.forEach(function(q, qi){
-        const sel = document.querySelector('input[name="examQ' + qi + '"]:checked');
-        if(sel && q.options[parseInt(sel.value, 10)].correct) correctCount++;
-      });
-      const total = currentExamQuestions.length;
-      const scorePct = total ? Math.round((correctCount / total) * 100) : 0;
-      const passed = scorePct >= 70;
-      const { error } = await sb.from('exam_attempts').insert({
-        student_id: currentProfile.id, club: currentProfile.club, level: currentLevel, score: scorePct, passed: passed
-      });
-      if(error){ examResult.textContent = error.message; return; }
+      let scorePct, passed;
+      if(examMode === 'server'){
+        const answers = {};
+        currentExamQuestions.forEach(function(q, qi){
+          const sel = document.querySelector('input[name="examQ' + qi + '"]:checked');
+          if(sel) answers[q.id] = q.options[parseInt(sel.value, 10)].text;
+        });
+        submitExamBtn.disabled = true;
+        const { data, error } = await sb.rpc('submit_exam', { p_club: currentProfile.club, p_level: currentLevel, p_answers: answers });
+        submitExamBtn.disabled = false;
+        if(error){ examResult.textContent = friendlyErrorMessage(error); return; }
+        const r = Array.isArray(data) ? data[0] : data;
+        scorePct = r.score;
+        passed = r.passed;
+      } else {
+        let correctCount = 0;
+        currentExamQuestions.forEach(function(q, qi){
+          const sel = document.querySelector('input[name="examQ' + qi + '"]:checked');
+          if(sel && q.options[parseInt(sel.value, 10)].correct) correctCount++;
+        });
+        const total = currentExamQuestions.length;
+        scorePct = total ? Math.round((correctCount / total) * 100) : 0;
+        passed = scorePct >= 70;
+        const { error } = await sb.from('exam_attempts').insert({
+          student_id: currentProfile.id, club: currentProfile.club, level: currentLevel, score: scorePct, passed: passed
+        });
+        if(error){ examResult.textContent = friendlyErrorMessage(error); return; }
+      }
       examResult.style.color = passed ? '#2e7d32' : '#B4213D';
       examResult.textContent = 'Score: ' + scorePct + '% — ' + (passed
         ? 'Passed! The next level is now unlocked.'
@@ -2187,10 +2719,10 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
   async function loadExamQuestionsAdmin(club, level){
     if(!examQList) return;
     const { data, error } = await sb.from('exam_questions').select('*').eq('club', club).eq('level', level).order('created_at');
-    if(error){ examQList.innerHTML = '<div class="lib-empty">' + error.message + '</div>'; return; }
+    if(error){ examQList.innerHTML = '<div class="lib-empty">' + esc(friendlyErrorMessage(error)) + '</div>'; return; }
     if(!data || data.length === 0){ examQList.innerHTML = '<div class="lib-empty">No questions yet for this level.</div>'; return; }
     examQList.innerHTML = data.map(function(q){
-      return '<div class="exam-q-row"><span>' + q.question + '</span></div>';
+      return '<div class="exam-q-row"><span>' + esc(q.question) + '</span></div>';
     }).join('');
   }
 
@@ -2219,14 +2751,14 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
   async function loadStudentsForProgress(){
     const { data } = await sb.from('profiles').select('id, full_name, club').eq('role', 'student').order('full_name');
     progStudent.innerHTML = (data || []).map(function(s){
-      return '<option value="' + s.id + '">' + s.full_name + ' — ' + (s.club || '') + '</option>';
+      return '<option value="' + esc(s.id) + '">' + esc(s.full_name) + ' — ' + esc(s.club || '') + '</option>';
     }).join('');
     if(studentsList){
       if(!data || data.length === 0){
         studentsList.innerHTML = '<div class="lib-empty">No students registered yet.</div>';
       } else {
         studentsList.innerHTML = data.map(function(s){
-          return '<div class="student-row"><b>' + s.full_name + '</b><span>' + (s.club || '—') + '</span></div>';
+          return '<div class="student-row"><b>' + esc(s.full_name) + '</b><span>' + esc(s.club || '—') + '</span></div>';
         }).join('');
       }
     }
@@ -2247,10 +2779,10 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
 
   async function loadMyProgress(){
     const { data, error } = await sb.from('progress').select('*').eq('student_id', currentProfile.id).order('created_at', { ascending: false });
-    if(error){ progressList.innerHTML = '<div class="lib-empty">' + error.message + '</div>'; return; }
+    if(error){ progressList.innerHTML = '<div class="lib-empty">' + esc(friendlyErrorMessage(error)) + '</div>'; return; }
     if(!data || data.length === 0){ progressList.innerHTML = '<div class="lib-empty">No progress entries yet.</div>'; return; }
     progressList.innerHTML = data.map(function(p){
-      return '<div class="progress-item"><b>' + (p.status || '') + '</b><span>' + new Date(p.created_at).toLocaleDateString() + '</span><p>' + (p.note || '') + '</p></div>';
+      return '<div class="progress-item"><b>' + esc(p.status || '') + '</b><span>' + new Date(p.created_at).toLocaleDateString() + '</span><p>' + esc(p.note || '') + '</p></div>';
     }).join('');
   }
 
@@ -2258,15 +2790,15 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
   async function loadNotifications(){
     let query = sb.from('notifications').select('*').order('created_at', { ascending: false }).limit(30);
     if(!isTeacher()){
-      query = query.or('club.is.null,club.eq.' + currentProfile.club);
+      query = query.or('club.is.null,club.eq."' + currentProfile.club + '"');
     }
     const { data, error } = await query;
     const render = function(target, items, empty){
-      if(error){ target.innerHTML = '<div class="lib-empty">' + error.message + '</div>'; return; }
+      if(error){ target.innerHTML = '<div class="lib-empty">' + esc(friendlyErrorMessage(error)) + '</div>'; return; }
       if(!items || items.length === 0){ target.innerHTML = '<div class="lib-empty">' + empty + '</div>'; return; }
       target.innerHTML = items.map(function(n){
-        return '<div class="notif-item"><b>' + n.title + '</b><p>' + n.body + '</p><span>' +
-          (n.club || 'All clubs') + ' · ' + new Date(n.created_at).toLocaleDateString() + '</span></div>';
+        return '<div class="notif-item"><b>' + esc(n.title) + '</b><p>' + esc(n.body) + '</p><span>' +
+          esc(n.club || 'All clubs') + ' · ' + new Date(n.created_at).toLocaleDateString() + '</span></div>';
       }).join('');
     };
     render(notifList, data, 'No notifications yet.');
@@ -2304,6 +2836,14 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
       profileMsg.textContent = 'Saved.';
     });
   }
+
+  // re-render text built in JavaScript when the visitor switches language
+  window.__refreshDynamicText = function(){
+    if(!currentProfile) return;
+    renderMaterials();
+    showPickedFile();
+    loadReadingHub();
+  };
 
   sb.auth.onAuthStateChange(function(){ refreshSession(); });
   refreshSession();
@@ -2455,6 +2995,12 @@ revealEls.forEach(el=>revealObserver.observe(el));
     "Title":"العنوان",
     "File (PDF, image, or document)":"الملف (PDF أو صورة أو مستند)",
     "Upload to club":"ارفع إلى النادي",
+    "Drag a book here, or click to choose a file":"اسحب كتاباً هنا أو اضغط لاختيار ملف",
+    "PDF, Word, EPUB, PowerPoint or image · up to 50 MB · Arabic file names are fine":"PDF أو Word أو EPUB أو PowerPoint أو صورة · حتى 50 ميجابايت · الأسماء العربية مقبولة",
+    "day reading streak":"يوم متتالٍ من القراءة",
+    "Top readers this week":"الأكثر قراءةً هذا الأسبوع",
+    "Book":"كتاب",
+    "Download":"تحميل",
     "Every student in that club sees it immediately.":"سيراه كل طالب في هذا النادي فوراً.",
     "All":"الكل",
     "Phonics":"الصوتيات",
@@ -2606,6 +3152,8 @@ revealEls.forEach(el=>revealObserver.observe(el));
   /* attribute translations: [selector, attribute] */
   const ATTRS = [
     ['#libTitle', 'placeholder', 'e.g. Oxford Reading Tree — Level 3', 'مثال: Oxford Reading Tree — المستوى 3'],
+    ['#libSearch', 'placeholder', 'Search books and materials…', 'ابحث في الكتب والمواد…'],
+    ['#readerClose', 'aria-label', 'Close', 'إغلاق'],
     ['.wa-float', 'aria-label', 'WhatsApp', 'واتساب'],
     ['.nav-mobile-toggle', 'aria-label', 'menu', 'القائمة']
   ];
@@ -2664,6 +3212,7 @@ revealEls.forEach(el=>revealObserver.observe(el));
     if(langBtn)  langBtn.setAttribute('title', toAr ? 'Switch to English' : 'التبديل إلى العربية');
 
     if(window.__refreshHeroWords) window.__refreshHeroWords(lang);
+    if(window.__refreshDynamicText) window.__refreshDynamicText();
 
     try{ localStorage.setItem('cc_lang', lang); }catch(e){}
 
