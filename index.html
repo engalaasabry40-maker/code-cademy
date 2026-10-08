@@ -875,10 +875,339 @@ html[dir="rtl"] .scene-svg{transform-origin:45% 60%;}
     radial-gradient(ellipse 80% 46% at 50% 40%, rgba(252,250,246,0.94) 0%, rgba(252,250,246,0.78) 50%, rgba(252,250,246,0.18) 82%),
     linear-gradient(180deg, rgba(252,250,246,0.6) 0%, rgba(252,250,246,0) 32%, rgba(252,250,246,0.4) 100%);}
 }
+/* ===== v2 landing additions ===== */
+/* keep the header inside the screen: the floating WhatsApp button already covers contact */
+@media(max-width:1400px){.nav-actions .icon-btn,.nav-actions .nav-sep{display:none;}}
+.scroll-progress{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);z-index:60;
+  background:linear-gradient(90deg,var(--maroon),var(--cyan));pointer-events:none;}
+html[dir="rtl"] .scroll-progress{transform-origin:100% 50%;}
+.to-top{position:fixed;bottom:96px;right:26px;width:44px;height:44px;border-radius:50%;border:1px solid var(--soft-line);background:#fff;color:var(--maroon-deep);
+  font-size:1.1rem;box-shadow:var(--shadow-md);z-index:40;opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .3s,transform .3s;}
+.to-top.show{opacity:1;transform:none;pointer-events:auto;}
+html[dir="rtl"] .to-top{right:auto;left:26px;}
+
+.platform{padding:110px 0;background:linear-gradient(180deg,var(--paper),#F5EEE8);position:relative;overflow:hidden;}
+.platform::before{content:'';position:absolute;width:620px;height:620px;border-radius:50%;left:-220px;top:-260px;
+  background:radial-gradient(circle,rgba(95,224,200,0.18),transparent 65%);}
+.platform-head{text-align:center;max-width:680px;margin:0 auto 56px;position:relative;}
+.platform-head .kicker{font-family:var(--serif);font-style:italic;color:var(--maroon);font-size:1.05rem;margin-bottom:10px;}
+.platform-head h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,4.2vw,2.9rem);color:var(--maroon-deep);margin:0 0 14px;letter-spacing:-0.01em;}
+.platform-head p{color:#6b4f56;line-height:1.65;margin:0;}
+.platform-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;position:relative;}
+@media(max-width:960px){.platform-grid{grid-template-columns:1fr;max-width:520px;margin:0 auto;}}
+.pf-card{background:#fff;border:1px solid var(--soft-line);border-radius:20px;padding:30px 28px 26px;box-shadow:var(--shadow-sm);position:relative;
+  display:flex;flex-direction:column;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s;}
+.pf-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);}
+.pf-featured{background:var(--grad-brand);color:#F6E9E3;border:none;box-shadow:0 30px 60px -28px rgba(62,15,27,0.75);}
+.pf-tag{position:absolute;top:20px;right:22px;background:var(--cyan);color:var(--graphite);font-size:0.68rem;font-weight:800;letter-spacing:.08em;
+  text-transform:uppercase;padding:4px 10px;border-radius:12px;}
+html[dir="rtl"] .pf-tag{right:auto;left:22px;}
+.pf-icon{width:56px;height:56px;border-radius:16px;background:var(--peach-soft);display:flex;align-items:center;justify-content:center;font-size:1.7rem;margin-bottom:18px;}
+.pf-featured .pf-icon{background:rgba(255,255,255,0.12);}
+.pf-card h3{font-family:var(--serif);font-size:1.45rem;margin:0 0 14px;color:var(--maroon-deep);}
+.pf-featured h3{color:#fff;}
+.pf-card ul{list-style:none;margin:0 0 24px;padding:0;display:flex;flex-direction:column;gap:11px;flex:1;}
+.pf-card li{position:relative;padding-inline-start:26px;font-size:0.92rem;line-height:1.5;color:#5a4148;}
+.pf-featured li{color:rgba(246,233,227,0.88);}
+.pf-card li::before{content:'✓';position:absolute;inset-inline-start:0;top:0;width:18px;height:18px;border-radius:50%;background:#EAF4F0;color:#1d6b5b;
+  font-size:0.68rem;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:2px;}
+.pf-featured li::before{background:rgba(95,224,200,0.2);color:var(--cyan);}
+.pf-mock{border-radius:14px;padding:14px 16px;font-size:0.82rem;}
+.pf-mock-streak{background:linear-gradient(135deg,#3E0F1B,#5C1A28);color:#fff;display:flex;align-items:center;gap:10px;}
+.pf-mock-streak span{font-size:1.5rem;}
+.pf-mock-streak b{font-family:var(--serif);font-size:1.6rem;}
+.pf-mock-streak i{font-style:normal;opacity:.8;}
+.pf-mock-chat{background:rgba(255,255,255,0.08);display:flex;flex-direction:column;gap:8px;}
+.pf-mock-chat p{margin:0;padding:8px 12px;border-radius:14px;max-width:85%;}
+.pf-mock-chat .in{background:#fff;color:var(--ink);border-bottom-left-radius:4px;}
+.pf-mock-chat .out{background:var(--cyan);color:var(--graphite);align-self:flex-end;border-bottom-right-radius:4px;}
+.pf-mock-up{background:#EAF4F0;color:#1d6b5b;display:flex;align-items:center;gap:10px;font-weight:600;}
+.pf-mock-up span{font-size:1.3rem;}
+.pf-mock-up i{font-style:normal;}
+.platform-cta{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:44px;}
+.pf-btn{padding:14px 26px;font-size:0.95rem;border-radius:12px;}
+
+.faq{padding:100px 0;background:var(--paper);}
+.faq-list{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:12px;}
+.faq details{background:#fff;border:1px solid var(--soft-line);border-radius:16px;box-shadow:var(--shadow-sm);overflow:hidden;transition:box-shadow .25s;}
+.faq details[open]{box-shadow:var(--shadow-md);}
+.faq summary{list-style:none;cursor:pointer;padding:20px 24px;font-weight:600;color:var(--maroon-deep);display:flex;justify-content:space-between;gap:16px;align-items:center;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::after{content:'+';flex:none;width:28px;height:28px;border-radius:50%;background:var(--peach-soft);display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;transition:transform .3s,background .3s;}
+.faq details[open] summary::after{transform:rotate(45deg);background:var(--peach);}
+.faq details p{margin:0;padding:0 24px 22px;color:#5a4148;line-height:1.7;font-size:0.94rem;}
+
+/* =====================================================================
+   v2 design system — dashboard, chat, parents, certificates, admin
+   ===================================================================== */
+:root{
+  --surface:#FFFFFF;
+  --canvas:#F6F2EE;
+  --muted:#7C6268;
+  --soft-line:rgba(62,15,27,0.08);
+  --gold:#C9A227;
+  --radius:16px;
+  --shadow-sm:0 1px 2px rgba(36,16,20,0.05),0 2px 8px -2px rgba(36,16,20,0.06);
+  --shadow-md:0 2px 4px rgba(36,16,20,0.04),0 14px 34px -14px rgba(62,15,27,0.22);
+  --grad-brand:linear-gradient(135deg,#3E0F1B 0%,#5C1A28 55%,#8A2E43 100%);
+}
+
+/* ---- shell ---- */
+.dashboard-page{background:var(--canvas);}
+.dash-top{background:rgba(255,255,255,0.86);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);
+  border-bottom:1px solid var(--soft-line);padding:12px 28px;}
+.dash-avatar{width:42px;height:42px;background:var(--grad-brand);box-shadow:0 6px 16px -6px rgba(92,26,40,0.55);font-size:1rem;}
+.dash-who b{font-size:0.95rem;}
+.dash-link-btn{padding:8px 14px;border-radius:10px;border:1px solid var(--soft-line);background:#fff;transition:background .2s,border-color .2s,transform .2s;}
+.dash-link-btn:hover{background:var(--peach-soft);border-color:rgba(92,26,40,0.25);transform:translateY(-1px);}
+#dashSignOutBtn{background:var(--maroon-deep);color:#fff;border-color:var(--maroon-deep);}
+#dashSignOutBtn:hover{background:var(--maroon);}
+.dash-body{grid-template-columns:248px 1fr;max-width:1320px;gap:0;}
+.dash-sidebar{position:sticky;top:67px;align-self:start;height:calc(100vh - 67px);overflow-y:auto;padding:22px 14px;
+  border-right:1px solid var(--soft-line);background:transparent;}
+.dash-tab{gap:12px;padding:11px 14px;border-radius:12px;font-weight:500;color:#5a4148;position:relative;}
+.dash-tab .ic{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;opacity:.85;}
+.dash-tab span{flex:1;}
+.dash-tab:hover{background:rgba(92,26,40,0.06);color:var(--maroon-deep);}
+.dash-tab.active{background:var(--grad-brand);color:#fff;box-shadow:0 10px 22px -12px rgba(92,26,40,0.7);}
+.dash-tab.active .ic{opacity:1;}
+.tab-badge{min-width:20px;height:20px;padding:0 6px;border-radius:10px;background:#E5484D;color:#fff;font-size:0.68rem;font-weight:700;
+  display:inline-flex;align-items:center;justify-content:center;font-style:normal;}
+.tab-badge[hidden]{display:none;}
+.dash-tab.active .tab-badge{background:#fff;color:var(--maroon-deep);}
+.dash-main{padding:34px 34px 80px;}
+.dash-view{animation:viewIn .35s ease-out;}
+@keyframes viewIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+.dash-view h3{font-size:1.75rem;letter-spacing:-0.01em;}
+.dash-view>p.dash-sub{font-size:0.92rem;color:var(--muted);}
+@media(max-width:760px){
+  .dash-top{padding:10px 16px;position:relative;}
+  .dash-body{grid-template-columns:1fr;}
+  .dash-sidebar{display:flex;flex-direction:row;gap:4px;overflow-x:auto;border-right:none;}
+  html[dir="rtl"] .dash-sidebar{border-left:none;}
+  .dash-tab{white-space:nowrap;margin-bottom:0;width:auto;}
+  .dash-view[data-view="overview"]>h3{font-size:1.45rem;padding:22px 20px 4px;}
+  .dash-view[data-view="overview"]>p.dash-sub{padding:0 20px 22px;}
+  .dash-sidebar{position:sticky;top:0;height:auto;z-index:3;background:rgba(246,242,238,0.95);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--soft-line);padding:10px 12px;scrollbar-width:none;}
+  .dash-sidebar::-webkit-scrollbar{display:none;}
+  .dash-tab{padding:9px 12px;}
+  .dash-tab span{flex:none;}
+  .dash-main{padding:22px 16px 70px;}
+  .dash-view h3{font-size:1.4rem;}
+}
+
+/* ---- overview ---- */
+.dash-view[data-view="overview"]>h3{background:linear-gradient(135deg,#3E0F1B 0%,#5C1A28 55%,#8A2E43 100%);color:#fff;margin:0;padding:30px 30px 6px;border-radius:var(--radius) var(--radius) 0 0;
+  font-size:1.9rem;position:relative;overflow:hidden;}
+.dash-view[data-view="overview"]>p.dash-sub{background:var(--grad-brand);color:rgba(255,255,255,0.82);margin:0 0 26px;padding:0 30px 30px;
+  border-radius:0 0 var(--radius) var(--radius);box-shadow:var(--shadow-md);position:relative;}
+.dash-view[data-view="overview"]>h3,.dash-view[data-view="overview"]>p.dash-sub{
+  background:linear-gradient(90deg,#3E0F1B 0%,#5C1A28 55%,#8A2E43 100%) !important;}
+html[dir="rtl"] .dash-view[data-view="overview"]>h3,html[dir="rtl"] .dash-view[data-view="overview"]>p.dash-sub{
+  background:linear-gradient(270deg,#3E0F1B 0%,#5C1A28 55%,#8A2E43 100%) !important;}
+.dash-stats{gap:16px;}
+.dash-stat{border:1px solid var(--soft-line);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden;
+  transition:transform .25s,box-shadow .25s;}
+.dash-stat:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);}
+.dash-stat::before{content:'';position:absolute;inset:0 auto 0 0;width:4px;background:var(--grad-brand);}
+html[dir="rtl"] .dash-stat::before{inset:0 0 0 auto;}
+.dash-stat b{font-size:2rem;}
+.notif-item{border-radius:12px;border-color:var(--soft-line);box-shadow:var(--shadow-sm);}
+.leader-card,.lib-card,.profile-card,.student-row,.progress-item,.exam-box{border-color:var(--soft-line);box-shadow:var(--shadow-sm);}
+.leader-card,.profile-card,.exam-box{border-radius:var(--radius);}
+.streak-card{border-radius:var(--radius);box-shadow:var(--shadow-md);}
+.lib-card{border-radius:14px;background:#fff;}
+.lib-form{background:#fff;border:1px solid var(--soft-line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow-sm);}
+.lib-form input,.lib-form select,.auth-form label input,.auth-form label select{border-radius:10px !important;}
+.lib-submit{border-radius:10px;}
+
+.link-card{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:#fff;border:1px dashed rgba(45,140,121,0.55);
+  border-radius:var(--radius);padding:18px 22px;margin-bottom:26px;}
+.link-card[hidden]{display:none;}
+.link-card b{display:block;color:var(--maroon-deep);margin-bottom:3px;}
+.link-card span{font-size:0.84rem;color:var(--muted);}
+.link-code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:1.35rem;font-weight:700;letter-spacing:.28em;padding:10px 16px;
+  border-radius:12px;border:none;background:#EAF4F0;color:#1d6b5b;cursor:copy;}
+.link-code:hover{background:#d8eee6;}
+
+/* buttons */
+.btn-primary,.btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;border-radius:10px;font-weight:600;
+  font-size:0.86rem;border:1px solid transparent;transition:transform .2s,background .2s,box-shadow .2s;}
+.btn-primary{background:var(--maroon-deep);color:#fff;box-shadow:0 8px 18px -10px rgba(62,15,27,0.7);}
+.btn-primary:hover{background:var(--maroon);transform:translateY(-1px);}
+.btn-ghost{background:#fff;color:var(--maroon-deep);border-color:var(--soft-line);}
+.btn-ghost:hover{background:var(--peach-soft);}
+
+/* avatars */
+.av{--h:340;width:36px;height:36px;border-radius:50%;flex:none;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:0.78rem;
+  color:hsl(var(--h) 45% 28%);background:hsl(var(--h) 55% 90%);letter-spacing:.02em;}
+.av.sm{width:30px;height:30px;font-size:0.7rem;}
+.av.lg{width:52px;height:52px;font-size:1rem;}
+
+/* empty states */
+.empty-state{grid-column:1/-1;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;padding:44px 20px;background:#fff;
+  border:1px dashed rgba(92,26,40,0.2);border-radius:var(--radius);}
+.empty-state div{font-size:2.4rem;}
+.empty-state b{color:var(--maroon-deep);font-family:var(--serif);font-size:1.1rem;}
+.empty-state span{font-size:0.86rem;color:var(--muted);max-width:420px;line-height:1.55;}
+
+/* ---- parents ---- */
+.link-form{background:#fff;border:1px solid var(--soft-line);border-radius:var(--radius);padding:20px 22px;margin-bottom:24px;box-shadow:var(--shadow-sm);}
+.link-form label{display:block;font-size:0.8rem;font-weight:600;color:var(--maroon-deep);margin-bottom:8px;}
+.link-form-row{display:flex;gap:10px;flex-wrap:wrap;}
+.link-form-row input{flex:1;min-width:180px;padding:11px 14px;border:1px solid var(--line);border-radius:10px;font:inherit;font-size:1.1rem;
+  letter-spacing:.25em;text-transform:uppercase;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+.link-form .lib-note{margin:10px 0 0;}
+.children-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-bottom:28px;}
+.child-card{background:#fff;border:1px solid var(--soft-line);border-radius:var(--radius);box-shadow:var(--shadow-sm);overflow:hidden;
+  transition:transform .25s,box-shadow .25s;}
+.child-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);}
+.child-card header{display:flex;align-items:center;gap:14px;padding:20px 22px;background:linear-gradient(135deg,var(--peach-soft),#EAF4F0);}
+.child-card header b{display:block;font-family:var(--serif);font-size:1.15rem;color:var(--maroon-deep);}
+.child-card header span{font-size:0.8rem;color:var(--muted);}
+.child-stats{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--soft-line);}
+.child-stats div{padding:14px 10px;text-align:center;}
+.child-stats div+div{border-inline-start:1px solid var(--soft-line);}
+.child-stats b{display:block;font-family:var(--serif);font-size:1.35rem;color:var(--maroon-deep);}
+.child-stats span{font-size:0.7rem;color:var(--muted);}
+.child-facts{list-style:none;margin:0;padding:14px 22px;display:flex;flex-direction:column;gap:10px;}
+.child-facts li{display:flex;gap:10px;font-size:0.84rem;color:#4b353b;line-height:1.45;}
+.child-facts i{font-style:normal;}
+.child-facts small{color:#a4838a;margin-inline-start:4px;}
+.child-card footer{display:flex;gap:10px;flex-wrap:wrap;padding:0 22px 20px;background:none;color:inherit;margin:0;border:none;}
+
+/* ---- chat ---- */
+.chat{display:grid;grid-template-columns:300px 1fr;height:min(72vh,680px);min-height:440px;background:#fff;border:1px solid var(--soft-line);
+  border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;}
+.chat.solo{grid-template-columns:1fr;}
+.chat.solo .chat-list,.chat.solo .chat-back{display:none;}
+.chat-list{border-inline-end:1px solid var(--soft-line);display:flex;flex-direction:column;min-height:0;background:#FBF9F7;}
+.chat-search{margin:14px;padding:10px 14px;border-radius:10px;border:1px solid var(--soft-line);font:inherit;font-size:0.86rem;background:#fff;}
+.chat-inbox{overflow-y:auto;flex:1;padding:0 8px 10px;}
+.inbox-row{display:flex;align-items:center;gap:12px;width:100%;padding:11px 10px;border:none;background:none;border-radius:12px;text-align:start;
+  cursor:pointer;transition:background .15s;}
+.inbox-row:hover{background:rgba(92,26,40,0.05);}
+.inbox-row.active{background:#fff;box-shadow:var(--shadow-sm);}
+.ib-main{flex:1;min-width:0;}
+.ib-main b{display:block;font-size:0.88rem;color:var(--maroon-deep);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ib-main span{display:block;font-size:0.78rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.inbox-row.unread .ib-main span{color:var(--ink);font-weight:600;}
+.ib-side{display:flex;flex-direction:column;align-items:flex-end;gap:4px;}
+.ib-side small{font-size:0.68rem;color:#a4838a;}
+.ib-side i{font-style:normal;background:#E5484D;color:#fff;font-size:0.66rem;font-weight:700;border-radius:9px;min-width:18px;height:18px;
+  display:inline-flex;align-items:center;justify-content:center;padding:0 5px;}
+.chat-pane{display:flex;flex-direction:column;min-height:0;min-width:0;}
+.chat-head{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--soft-line);}
+.chat-head .av{width:40px;height:40px;}
+.chat-who b{display:block;color:var(--maroon-deep);font-size:0.95rem;}
+.chat-who span{font-size:0.76rem;color:var(--muted);}
+.chat-back{display:none;border:none;background:none;font-size:1.2rem;color:var(--maroon-deep);padding:4px 8px;}
+html[dir="rtl"] .chat-back{transform:scaleX(-1);}
+.chat-msgs{flex:1;overflow-y:auto;padding:22px 20px;display:flex;flex-direction:column;gap:12px;
+  background:radial-gradient(circle at 20% 0%,rgba(247,228,212,0.45),transparent 50%),radial-gradient(circle at 90% 100%,rgba(234,244,240,0.7),transparent 45%);}
+.chat-empty{margin:auto;display:flex;flex-direction:column;align-items:center;gap:8px;font-size:2rem;color:var(--muted);text-align:center;}
+.chat-empty span{font-size:0.88rem;}
+.msg{display:flex;align-items:flex-end;gap:8px;max-width:78%;}
+.msg.mine{align-self:flex-end;flex-direction:row-reverse;}
+.bubble{background:#fff;border:1px solid var(--soft-line);border-radius:16px 16px 16px 4px;padding:9px 13px;box-shadow:var(--shadow-sm);min-width:0;}
+html[dir="rtl"] .bubble{border-radius:16px 16px 4px 16px;}
+.msg.mine .bubble{background:var(--grad-brand);color:#fff;border:none;border-radius:16px 16px 4px 16px;}
+html[dir="rtl"] .msg.mine .bubble{border-radius:16px 16px 16px 4px;}
+.msg.private .bubble{background:#FFF7E6;border-color:#F2D99B;}
+.msg.mine.private .bubble{background:linear-gradient(135deg,#6b4a12,#8a6418);}
+.bubble b{display:block;font-size:0.74rem;color:var(--maroon);margin-bottom:2px;}
+.bubble b em{font-style:normal;font-weight:500;color:#a4838a;margin-inline-start:4px;}
+.bubble p{margin:0;font-size:0.9rem;line-height:1.5;word-wrap:break-word;overflow-wrap:anywhere;}
+.bubble small{display:block;font-size:0.66rem;opacity:.65;margin-top:4px;text-align:end;}
+.chat-compose{border-top:1px solid var(--soft-line);padding:12px 14px;background:#fff;}
+.chat-compose[hidden]{display:none;}
+.chat-private{display:flex !important;align-items:center;gap:8px;font-size:0.76rem;color:#8a6418;margin-bottom:8px;cursor:pointer;}
+.chat-private[hidden]{display:none !important;}
+.chat-row{display:flex;gap:10px;align-items:flex-end;}
+.chat-row textarea{flex:1;resize:none;border:1px solid var(--soft-line);border-radius:14px;padding:11px 14px;font:inherit;font-size:0.92rem;
+  max-height:140px;background:#FBF9F7;}
+.chat-row textarea:focus{outline:2px solid var(--maroon);outline-offset:0;background:#fff;}
+.chat-send{width:44px;height:44px;border-radius:50%;border:none;background:var(--grad-brand);display:flex;align-items:center;justify-content:center;flex:none;
+  box-shadow:0 8px 16px -8px rgba(62,15,27,0.7);transition:transform .2s;}
+.chat-send:hover{transform:scale(1.06);}
+.chat-send svg{width:20px;height:20px;fill:#fff;}
+html[dir="rtl"] .chat-send svg{transform:scaleX(-1);}
+@media(max-width:760px){
+  .chat{grid-template-columns:1fr;height:calc(100vh - 210px);}
+  .chat .chat-pane{display:none;}
+  .chat.open .chat-pane{display:flex;}
+  .chat.open .chat-list{display:none;}
+  .chat-back{display:block;}
+  .msg{max-width:90%;}
+}
+
+/* ---- certificates ---- */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;}
+.cert-card{position:relative;background:#fff;border:1px solid var(--soft-line);border-radius:var(--radius);padding:26px 22px 22px;box-shadow:var(--shadow-sm);
+  display:flex;flex-direction:column;gap:4px;overflow:hidden;}
+.cert-card::before{content:'';position:absolute;inset:0 0 auto 0;height:5px;background:linear-gradient(90deg,var(--gold),#f3dc8a,var(--gold));}
+.cert-ribbon{font-size:1.8rem;margin-bottom:6px;}
+.cert-card b{font-family:var(--serif);font-size:1.15rem;color:var(--maroon-deep);}
+.cert-card span{font-size:0.84rem;color:var(--muted);}
+.cert-card small{font-size:0.74rem;color:#a4838a;margin-bottom:12px;}
+.cert-card .btn-primary{align-self:flex-start;}
+.cert-modal{position:fixed;inset:0;z-index:450;background:rgba(20,23,28,0.82);display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:16px;padding:20px;overflow:auto;}
+.cert-modal[hidden]{display:none;}
+.cert-actions{display:flex;gap:10px;}
+.cert-sheet{width:min(960px,100%);aspect-ratio:1.414;background:#FFFDF8;color:var(--ink);padding:2.2%;box-shadow:0 30px 80px -20px rgba(0,0,0,0.6);
+  font-size:clamp(9px,1.6vw,16px);direction:ltr;}
+.cs-border{height:100%;border:3px double var(--gold);outline:1px solid rgba(201,162,39,0.45);outline-offset:-10px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;padding:4% 6%;
+  background:radial-gradient(circle at 50% 40%,rgba(247,228,212,0.55),transparent 65%);}
+.cs-brand{font-family:var(--serif);letter-spacing:.4em;font-weight:700;color:var(--maroon-deep);font-size:1.1em;}
+.cs-kicker{font-size:.85em;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:.6em 0 2.2em;}
+.cs-pre{margin:.2em 0;font-style:italic;font-family:var(--serif);color:var(--muted);font-size:1.05em;}
+.cs-name{font-family:var(--serif);font-size:3.2em;margin:.15em 0 .3em;color:var(--maroon-deep);border-bottom:1px solid rgba(201,162,39,0.6);padding:0 .6em .1em;}
+.cs-level{font-family:var(--serif);font-size:1.9em;margin:.3em 0 .1em;color:var(--maroon);}
+.cs-club{margin:0;color:var(--muted);}
+.cs-foot{display:flex;align-items:center;justify-content:space-between;width:100%;margin-top:auto;padding-top:1.5em;}
+.cs-foot div{display:flex;flex-direction:column;min-width:28%;}
+.cs-foot b{font-size:.95em;border-top:1px solid rgba(62,15,27,0.3);padding-top:.4em;}
+.cs-foot span{font-size:.75em;color:var(--muted);}
+.cs-foot .cs-seal{min-width:0;width:5.5em;height:5.5em;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;
+  font-size:1.2em;color:#fff;background:radial-gradient(circle at 35% 30%,#f3dc8a,var(--gold) 55%,#8c6d12);box-shadow:0 0 0 .35em rgba(201,162,39,0.25);}
+@media print{
+  @page{size:A4 landscape;margin:0;}
+  body>*:not(#certModal){display:none !important;}
+  body::before{display:none !important;}
+  #certModal{position:static;background:none;padding:0;display:block !important;}
+  .cert-actions{display:none !important;}
+  .cert-sheet{width:100%;box-shadow:none;font-size:15px;}
+}
+
+/* ---- admin ---- */
+.users-tools{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:16px;}
+.users-tools .lib-search{max-width:320px;}
+.users-filter{display:flex;gap:6px;flex-wrap:wrap;}
+.users-table{background:#fff;border:1px solid var(--soft-line);border-radius:var(--radius);box-shadow:var(--shadow-sm);overflow:hidden;}
+.user-row{display:flex;align-items:center;gap:14px;padding:13px 18px;border-bottom:1px solid var(--soft-line);flex-wrap:wrap;}
+.user-row:last-child{border-bottom:none;}
+.user-row:hover{background:#FBF9F7;}
+.ur-main{flex:1;min-width:180px;}
+.ur-main b{display:block;font-size:0.9rem;color:var(--maroon-deep);}
+.ur-main b em{font-style:normal;font-weight:400;color:#a4838a;}
+.ur-main span{font-size:0.78rem;color:var(--muted);}
+.role-pill{font-size:0.7rem;font-weight:700;padding:4px 10px;border-radius:12px;text-transform:uppercase;letter-spacing:.04em;}
+.role-student{background:#EAF4F0;color:#1d6b5b;}
+.role-parent{background:#EEF0FF;color:#3b46a3;}
+.role-teacher{background:var(--peach);color:var(--maroon-deep);}
+.role-admin{background:var(--maroon-deep);color:#fff;}
+.ur-role{padding:8px 10px;border:1px solid var(--line);border-radius:10px;font:inherit;font-size:0.82rem;background:#fff;}
+.auth-hint{font-size:0.76rem;color:var(--muted);margin:-6px 0 14px;}
+
 </style>
 </head>
 <body>
 
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 <header class="nav" id="siteNav">
   <div class="wrap nav-inner">
     <a class="brand" href="#top">
@@ -1225,16 +1554,55 @@ html[dir="rtl"] .scene-svg{transform-origin:45% 60%;}
   </div>
 </section>
 
-<section class="library flow-bg" id="club-library">
+<section class="platform" id="club-library">
   <div class="wrap">
-    <div class="library-panel reveal" style="text-align:center;padding:54px 36px;">
-      <div class="kicker">Club Library &amp; Progress</div>
-      <h3>Your own dashboard — books, attendance and progress, in one place.</h3>
-      <p style="max-width:560px;margin:0 auto 26px;">Sign in to reach a real, dedicated page for your club: materials to download, progress tracked over time, and announcements from your teacher — built for students and teachers alike.</p>
-      <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
-        <button class="lib-submit" id="openAuthBtnTeaser" type="button">Sign in</button>
-        <button class="lib-tab" id="openSignupBtnTeaser" type="button">Create an account</button>
-      </div>
+    <div class="platform-head reveal">
+      <div class="kicker">One platform · three experiences</div>
+      <h2>Students learn. Parents follow. Teachers lead.</h2>
+      <p>Books, level exams, certificates and real conversations between home and class — in Arabic and English, on any device.</p>
+    </div>
+    <div class="platform-grid">
+      <article class="pf-card reveal" data-i="0">
+        <div class="pf-icon">🎒</div>
+        <h3>For students</h3>
+        <ul>
+          <li>Read every club book right inside the site</li>
+          <li>Daily reading streaks and a weekly top-readers board</li>
+          <li>Level exams that unlock the next level</li>
+          <li>A printable certificate for every level passed</li>
+        </ul>
+        <div class="pf-mock pf-mock-streak"><span>🔥</span><b>12</b><i>day reading streak</i></div>
+      </article>
+      <article class="pf-card pf-featured reveal" data-i="1">
+        <div class="pf-tag">New</div>
+        <div class="pf-icon">👨‍👩‍👧</div>
+        <h3>For parents</h3>
+        <ul>
+          <li>Link your child with one short code</li>
+          <li>See books read, exam results and teacher notes</li>
+          <li>Chat directly with your child’s teachers</li>
+          <li>Private notes only parents and teachers can see</li>
+        </ul>
+        <div class="pf-mock pf-mock-chat">
+          <p class="in">She led the role-play today 👏</p>
+          <p class="out">That’s wonderful, thank you!</p>
+        </div>
+      </article>
+      <article class="pf-card reveal" data-i="2">
+        <div class="pf-icon">🧑‍🏫</div>
+        <h3>For teachers</h3>
+        <ul>
+          <li>Drag &amp; drop books into any club and level</li>
+          <li>Build exams — graded automatically and securely</li>
+          <li>Log attendance and progress in seconds</li>
+          <li>Announcements that reach every family instantly</li>
+        </ul>
+        <div class="pf-mock pf-mock-up"><span>📚</span><i>Uploaded to Reading Club · A1–A2</i></div>
+      </article>
+    </div>
+    <div class="platform-cta reveal">
+      <button class="btn-primary pf-btn" id="openSignupBtnTeaser" type="button">Create a free account</button>
+      <button class="btn-ghost pf-btn" id="openAuthBtnTeaser" type="button">Sign in</button>
     </div>
   </div>
 </section>
@@ -1274,9 +1642,10 @@ html[dir="rtl"] .scene-svg{transform-origin:45% 60%;}
         <label>I am a…
           <select id="suRole">
             <option value="student">Student</option>
-            <option value="teacher">Teacher</option>
+            <option value="parent">Parent / guardian</option>
           </select>
         </label>
+        <p class="auth-hint">Teachers: your account is created by the academy admin.</p>
         <label id="suClubWrap">Club
           <select id="suClub">
             <option>Phonics Club</option>
@@ -1307,20 +1676,32 @@ html[dir="rtl"] .scene-svg{transform-origin:45% 60%;}
     </div>
   </div>
   <div class="dash-body">
-    <div class="dash-sidebar">
-      <button class="dash-tab active" data-view="overview" type="button">Overview</button>
-      <button class="dash-tab" data-view="materials" type="button">Materials</button>
-      <button class="dash-tab" data-view="progress" type="button" id="tabProgress">My Progress</button>
-      <button class="dash-tab" data-view="students" type="button" id="tabStudents" hidden>Students</button>
-      <button class="dash-tab" data-view="notifications" type="button">Notifications</button>
-      <button class="dash-tab" data-view="profile" type="button">Profile</button>
-    </div>
+    <nav class="dash-sidebar" aria-label="Dashboard">
+      <button class="dash-tab active" data-view="overview" type="button"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>Overview</span></button>
+      <button class="dash-tab" data-view="materials" type="button" id="tabMaterials"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4z"/><path d="M20 4h-6a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h7z"/></svg><span>Materials</span></button>
+      <button class="dash-tab" data-view="progress" type="button" id="tabProgress"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg><span>My Progress</span></button>
+      <button class="dash-tab" data-view="children" type="button" id="tabChildren" hidden><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9.5" r="2.4"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M14.5 20c.2-2.4 1.4-4.3 3.5-4.3 2 0 3 1.6 3 4.3"/></svg><span>My children</span></button>
+      <button class="dash-tab" data-view="students" type="button" id="tabStudents" hidden><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg><span>Students</span></button>
+      <button class="dash-tab" data-view="messages" type="button" id="tabMessages"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg><span>Messages</span><b class="tab-badge" id="msgBadge" hidden>0</b></button>
+      <button class="dash-tab" data-view="certificates" type="button" id="tabCerts"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="5"/><path d="M9 13.5L7.5 21l4.5-2.5 4.5 2.5L15 13.5"/></svg><span>Certificates</span></button>
+      <button class="dash-tab" data-view="notifications" type="button"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span>Notifications</span></button>
+      <button class="dash-tab" data-view="users" type="button" id="tabUsers" hidden><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/><path d="M18.5 3.5l1 1 2-2" /></svg><span>Users & roles</span></button>
+      <button class="dash-tab" data-view="profile" type="button"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-1.8-.3 1.6 1.6 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-1-1.5 1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0 .3-1.8 1.6 1.6 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.5-1 1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3H9a1.6 1.6 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V9a1.6 1.6 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/></svg><span>Profile</span></button>
+    </nav>
     <div class="dash-main">
 
       <div class="dash-view" data-view="overview">
         <h3>Welcome back, <span id="ovName">there</span>.</h3>
         <p class="dash-sub" id="ovSub">Here's what's new in your club.</p>
         <div class="dash-stats" id="ovStats"></div>
+        <div class="link-card" id="ovLinkCard" hidden>
+          <div>
+            <b>Connect your parent</b>
+            <span>Share this code so your parent can follow your progress and message your teachers.</span>
+          </div>
+          <button class="link-code" type="button" id="ovLinkCode" title="Copy">——————</button>
+        </div>
+        <div id="ovChildren"></div>
         <div class="reading-hub" id="readingHub" hidden>
           <div class="streak-card" id="streakCard">
             <div class="streak-flame" aria-hidden="true">🔥</div>
@@ -1467,6 +1848,69 @@ html[dir="rtl"] .scene-svg{transform-origin:45% 60%;}
         <div id="studentsList"></div>
       </div>
 
+      <div class="dash-view" data-view="children" hidden>
+        <h3>My children</h3>
+        <p class="dash-sub">Follow reading, exams and teacher notes — and message the teachers directly.</p>
+        <form class="link-form" id="linkChildForm">
+          <label for="linkCode">Add a child with their 6-character code</label>
+          <div class="link-form-row">
+            <input id="linkCode" type="text" maxlength="6" autocomplete="off" placeholder="e.g. K7Q2ZP" required>
+            <button type="submit" class="lib-submit">Link child</button>
+          </div>
+          <p class="lib-note" id="linkMsg">Your child finds the code on their dashboard, under Overview or Profile.</p>
+        </form>
+        <div class="children-grid" id="childrenList"></div>
+      </div>
+
+      <div class="dash-view" data-view="messages" hidden>
+        <h3>Messages</h3>
+        <p class="dash-sub" id="msgSub">Talk with teachers, students and parents in one place.</p>
+        <div class="chat" id="chat">
+          <aside class="chat-list">
+            <input type="search" id="chatSearch" class="chat-search" placeholder="Search conversations…" aria-label="Search conversations">
+            <div id="chatInbox" class="chat-inbox"></div>
+          </aside>
+          <section class="chat-pane">
+            <header class="chat-head">
+              <button class="chat-back" id="chatBack" type="button" aria-label="Back">←</button>
+              <div class="chat-avatar" id="chatAvatar">?</div>
+              <div class="chat-who"><b id="chatTitle">Select a conversation</b><span id="chatMeta"></span></div>
+            </header>
+            <div class="chat-msgs" id="chatMsgs">
+              <div class="chat-empty">💬<span>Pick a conversation to start chatting.</span></div>
+            </div>
+            <form class="chat-compose" id="chatForm" hidden>
+              <label class="chat-private" id="chatPrivateWrap" hidden><input type="checkbox" id="chatPrivate"> <span>Private — only parents &amp; teachers see it</span></label>
+              <div class="chat-row">
+                <textarea id="chatInput" rows="1" maxlength="4000" placeholder="Write a message…" aria-label="Message"></textarea>
+                <button type="submit" class="chat-send" aria-label="Send"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5L21 3l-8.5 18-2-7.5z"/></svg></button>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+
+      <div class="dash-view" data-view="certificates" hidden>
+        <h3>Certificates</h3>
+        <p class="dash-sub" id="certSub">Pass a level exam and your certificate appears here — ready to print or share.</p>
+        <div class="cert-grid" id="certList"></div>
+      </div>
+
+      <div class="dash-view" data-view="users" hidden>
+        <h3>Users &amp; roles</h3>
+        <p class="dash-sub">Only you can make someone a teacher. New sign-ups are students or parents.</p>
+        <div class="users-tools">
+          <input type="search" id="usersSearch" class="lib-search" placeholder="Search by name or email…" aria-label="Search users">
+          <div class="users-filter" id="usersFilter">
+            <button class="lib-tab active" data-role="all" type="button">All</button>
+            <button class="lib-tab" data-role="student" type="button">Students</button>
+            <button class="lib-tab" data-role="parent" type="button">Parents</button>
+            <button class="lib-tab" data-role="teacher" type="button">Teachers</button>
+          </div>
+        </div>
+        <div class="users-table" id="usersTable"></div>
+      </div>
+
       <div class="dash-view" data-view="notifications" hidden>
         <h3>Notifications</h3>
         <p class="dash-sub" id="notifSub">Announcements from your teachers.</p>
@@ -1506,6 +1950,7 @@ html[dir="rtl"] .scene-svg{transform-origin:45% 60%;}
             <label>Email<input type="email" id="profEmail" disabled></label>
             <label>Role<input type="text" id="profRole" disabled></label>
             <label id="profClubWrap">Club<input type="text" id="profClub" disabled></label>
+            <label id="profCodeWrap" hidden>Parent link code<input type="text" id="profCode" disabled></label>
             <button type="submit" class="lib-submit">Save changes</button>
             <p class="auth-error" id="profileMsg"></p>
           </form>
@@ -1653,6 +2098,37 @@ html[dir="rtl"] .scene-svg{transform-origin:45% 60%;}
 </section>
 
 
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="platform-head reveal">
+      <div class="kicker">Questions</div>
+      <h2>Good to know</h2>
+    </div>
+    <div class="faq-list">
+      <details class="reveal" data-i="0" open>
+        <summary>How does my child start?</summary>
+        <p>Create a student account, pick the club, and start at the Beginner level. Each level ends with a short exam — pass it with 70% and the next level unlocks, along with a certificate.</p>
+      </details>
+      <details class="reveal" data-i="1">
+        <summary>How do parents follow their child?</summary>
+        <p>Create a parent account, then enter the 6-character code from your child’s dashboard. You’ll see books read, exam results and teacher notes, and you can message the teachers directly.</p>
+      </details>
+      <details class="reveal" data-i="2">
+        <summary>Can students see the private messages between parents and teachers?</summary>
+        <p>No. Parents and teachers can mark a message as private — those are visible only to the child’s parents and the teachers.</p>
+      </details>
+      <details class="reveal" data-i="3">
+        <summary>How do teachers get an account?</summary>
+        <p>Teacher accounts are created by the academy. Teachers sign up normally and the admin gives them teacher access.</p>
+      </details>
+      <details class="reveal" data-i="4">
+        <summary>Does it work on phones and in Arabic?</summary>
+        <p>Yes — the whole site, dashboard and chat work on any phone, tablet or computer, in both Arabic and English.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
 <section class="collab" id="collab">
   <div class="wrap">
     <div class="collab-head reveal">
@@ -1699,6 +2175,7 @@ html[dir="rtl"] .scene-svg{transform-origin:45% 60%;}
   </div>
 </footer>
 
+<button class="to-top" id="toTop" type="button" aria-label="Back to top">↑</button>
 <a class="wa-float" href="https://wa.me/966538840330" aria-label="WhatsApp" target="_blank">
   <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M17.6 6.3A8.5 8.5 0 0 0 4.2 17l-.9 3.3 3.4-.9a8.5 8.5 0 0 0 12.9-7.4c0-2.3-.9-4.4-2-6.1zm-5.6 13a7 7 0 0 1-3.6-1l-.3-.1-2.5.7.7-2.4-.2-.3a7 7 0 1 1 5.9 3.1zm3.9-5.3c-.2-.1-1.3-.6-1.5-.7-.2-.1-.3-.1-.5.1s-.6.7-.8.9-.4.2-.6.1a5.8 5.8 0 0 1-2.8-2.5c-.2-.4.2-.4.5-.7.2-.2.2-.4.1-.6L9 8.9c-.1-.2-.3-.2-.5-.2h-.4c-.2 0-.5.1-.7.4-.2.3-.7.8-.7 1.8s.7 2.1 1.4 2.8c1.4 1.5 2.6 2.1 4.2 2.3.5.1 1 0 1.3-.3.3-.2.7-.6.8-.9.1-.2.1-.5 0-.6z"/></svg>
 </a>
@@ -1712,6 +2189,13 @@ html[dir="rtl"] .scene-svg{transform-origin:45% 60%;}
     </div>
   </div>
   <div class="reader-body" id="readerBody"></div>
+</div>
+<div class="cert-modal" id="certModal" hidden role="dialog" aria-modal="true" aria-label="Certificate">
+  <div class="cert-sheet" id="certSheet"></div>
+  <div class="cert-actions">
+    <button class="reader-btn" id="certPrint" type="button">Print / Save as PDF</button>
+    <button class="reader-btn" id="certClose" type="button">Close</button>
+  </div>
 </div>
 <div class="toasts" id="toasts" aria-live="polite"></div>
 
@@ -1925,7 +2409,13 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
   let passedLevels = []; // levels the signed-in student has already passed, in their club
   let currentExamQuestions = [];
 
-  function isTeacher(){ return currentProfile && (currentProfile.role === 'teacher' || currentProfile.role === 'admin'); }
+  function isTeacher(){ return !!currentProfile && (currentProfile.role === 'teacher' || currentProfile.role === 'admin'); }
+  function isAdmin(){ return !!currentProfile && currentProfile.role === 'admin'; }
+  function isParent(){ return !!currentProfile && currentProfile.role === 'parent'; }
+  function isStudent(){ return !!currentProfile && !isTeacher() && !isParent(); }
+  function roleName(role){
+    return ({ admin: t('Admin', 'مدير'), teacher: t('Teacher', 'معلم'), parent: t('Parent', 'ولي أمر'), student: t('Student', 'طالب') })[role] || role;
+  }
 
   // ---------- full-page auth screen ----------
   function openAuth(mode){
@@ -2066,6 +2556,11 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
     dashViews.forEach(v=>{ v.hidden = v.dataset.view !== view; });
     if(view === 'students') loadStudentsForProgress();
     if(view === 'notifications') loadNotifications();
+    if(view === 'messages') loadInbox();
+    if(view === 'certificates') loadCertificates();
+    if(view === 'users') loadUsers();
+    if(view === 'children') loadChildren();
+    dashboardPage.scrollTop = 0;
   }
   dashTabs.forEach(tab=>{
     tab.addEventListener('click', function(){ showDashView(tab.dataset.view); });
@@ -2128,26 +2623,34 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
       if(md.full_name){
         await sb.from('profiles').upsert({
           id: session.user.id, full_name: md.full_name,
-          role: md.role === 'teacher' ? 'teacher' : 'student', club: md.club || null
+          role: md.role === 'parent' ? 'parent' : 'student', club: md.role === 'parent' ? null : (md.club || null)
         }, { onConflict: 'id', ignoreDuplicates: true });
         currentProfile = await loadProfile(session.user.id);
       }
       if(!currentProfile) return; // signup row still being written — onAuthStateChange will fire again
     }
 
-    const roleLabel = isTeacher() ? 'Teacher' : 'Student';
+    const roleLabel = roleName(currentProfile.role === 'admin' || currentProfile.role === 'teacher' || currentProfile.role === 'parent' ? currentProfile.role : 'student');
     dashAvatar.textContent = (currentProfile.full_name || '?').trim().charAt(0).toUpperCase();
     dashName.textContent = currentProfile.full_name;
     dashRoleClub.textContent = roleLabel + (currentProfile.club ? ' · ' + currentProfile.club : '');
     ovName.textContent = currentProfile.full_name.split(' ')[0];
 
     tabStudents.hidden = !isTeacher();
-    tabProgress.hidden = isTeacher();
+    tabProgress.hidden = !isStudent();
+    document.getElementById('tabMaterials').hidden = isParent();
+    document.getElementById('tabChildren').hidden = !isParent();
+    document.getElementById('tabUsers').hidden = !isAdmin();
+    document.getElementById('tabCerts').hidden = isTeacher();
+    dashboardPage.dataset.role = currentProfile.role;
     libForm.hidden = !isTeacher();
     libTabs.hidden = !isTeacher();
     notifForm.hidden = !isTeacher();
 
-    if(isTeacher()){
+    if(isParent()){
+      notifSub.textContent = t('Announcements for your children’s clubs.', 'إعلانات نوادي أبنائك.');
+      ovSub.textContent = t('Here’s how your children are doing.', 'إليك أحوال أبنائك.');
+    } else if(isTeacher()){
       matHeading.textContent = 'Upload & manage books and materials';
       matSub.textContent = 'Pick a club, attach a file, and every student in that club sees it right away.';
       notifSub.textContent = 'Send an announcement to one club or to everyone.';
@@ -2163,12 +2666,24 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
     profEmail.value = currentEmail;
     profRole.value = roleLabel;
     profClub.value = currentProfile.club || '—';
+    document.getElementById('profCodeWrap').hidden = !currentProfile.link_code;
+    document.getElementById('profCode').value = currentProfile.link_code || '';
+    const linkCard = document.getElementById('ovLinkCard');
+    linkCard.hidden = !(isStudent() && currentProfile.link_code);
+    document.getElementById('ovLinkCode').textContent = currentProfile.link_code || '';
 
-    await loadPassedLevels();
-    await loadReadingHub(); // also fills readIds, used by the material cards
-    await Promise.all([loadMaterials(), loadOverviewStats(), loadNotifications()]);
+    if(isParent()){
+      readingHub.hidden = true;
+      await Promise.all([loadOverviewStats(), loadNotifications(), loadChildren()]);
+    } else {
+      document.getElementById('ovChildren').innerHTML = '';
+      await loadPassedLevels();
+      await loadReadingHub(); // also fills readIds, used by the material cards
+      await Promise.all([loadMaterials(), loadOverviewStats(), loadNotifications()]);
+      if(isTeacher()) await loadStudentsForProgress(); else await loadMyProgress();
+    }
+    refreshUnread();
     startRealtime();
-    if(isTeacher()) await loadStudentsForProgress(); else await loadMyProgress();
 
     if(wantDashboard) openDashboard();
 
@@ -2181,6 +2696,10 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
   }
 
   async function loadOverviewStats(){
+    if(isParent()){
+      ovStats.innerHTML = '';
+      return;
+    }
     if(isTeacher()){
       const [{ count: studentCount }, { count: matCount }, { count: progCount }] = await Promise.all([
         sb.from('profiles').select('id', { count: 'exact', head: true }).eq('role', 'student'),
@@ -2463,7 +2982,7 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
   }
 
   async function loadReadingHub(){
-    if(!readingHub || !currentProfile || !readsAvailable) return;
+    if(!readingHub || !currentProfile || !readsAvailable || isParent()) return;
     if(!isTeacher()){
       const { data, error } = await sb.from('material_reads').select('material_id, read_on')
         .eq('student_id', currentProfile.id).order('read_on', { ascending: false }).limit(1000);
@@ -2498,7 +3017,7 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'materials' }, function(payload){
         const m = payload.new || {};
         if(!currentProfile || m.uploaded_by === currentProfile.id) return;
-        if(!isTeacher() && m.club !== currentProfile.club) return;
+        if(isParent() || (!isTeacher() && m.club !== currentProfile.club)) return;
         toast('📚 ' + t('New book added', 'تمت إضافة كتاب جديد'), m.title + ' · ' + m.level);
         loadMaterials(); loadOverviewStats();
       })
@@ -2508,9 +3027,12 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'notifications' }, function(payload){
         const n = payload.new || {};
         if(!currentProfile || n.created_by === currentProfile.id) return;
-        if(!isTeacher() && n.club && n.club !== currentProfile.club) return;
+        if(isStudent() && n.club && n.club !== currentProfile.club) return;
         toast('🔔 ' + n.title, n.body);
         loadNotifications();
+      })
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages' }, function(payload){
+        onNewMessage(payload.new || {});
       })
       .subscribe();
   }
@@ -2711,7 +3233,10 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
         : 'Not yet — you need 70% to pass. You can try again anytime.');
       await loadPassedLevels();
       updateLevelTabsUI();
-      if(passed){ setTimeout(function(){ examPanel.hidden = true; }, 2500); }
+      if(passed){
+        toast('🎓 ' + t('Certificate unlocked!', 'حصلت على شهادة!'), t('Find it under Certificates.', 'ستجدها في قسم الشهادات.'));
+        setTimeout(function(){ examPanel.hidden = true; }, 2500);
+      }
     });
   }
 
@@ -2789,7 +3314,7 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
   // ---------- notifications ----------
   async function loadNotifications(){
     let query = sb.from('notifications').select('*').order('created_at', { ascending: false }).limit(30);
-    if(!isTeacher()){
+    if(isStudent()){
       query = query.or('club.is.null,club.eq."' + currentProfile.club + '"');
     }
     const { data, error } = await query;
@@ -2837,12 +3362,391 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
     });
   }
 
+  // ---------- shared helpers for the new views ----------
+  function initials(name){
+    return String(name || '?').trim().split(/\s+/).slice(0, 2).map(function(w){ return w.charAt(0); }).join('').toUpperCase() || '?';
+  }
+  function hueOf(str){
+    let h = 0; String(str || '').split('').forEach(function(c){ h = (h * 31 + c.charCodeAt(0)) % 360; });
+    return h;
+  }
+  function avatar(name, cls){
+    return '<span class="av ' + (cls || '') + '" style="--h:' + hueOf(name) + '">' + esc(initials(name)) + '</span>';
+  }
+  function fmtTime(iso){
+    if(!iso) return '';
+    const d = new Date(iso), now = new Date();
+    const locale = isAr() ? 'ar' : 'en';
+    if(d.toDateString() === now.toDateString()) return d.toLocaleTimeString(locale, { hour: 'numeric', minute: '2-digit' });
+    if(now - d < 6 * 864e5) return d.toLocaleDateString(locale, { weekday: 'short' });
+    return d.toLocaleDateString(locale, { day: 'numeric', month: 'short' });
+  }
+  function fmtDate(iso){
+    return iso ? new Date(iso).toLocaleDateString(isAr() ? 'ar' : 'en', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
+  }
+
+  // ---------- student: copy the parent link code ----------
+  document.getElementById('ovLinkCode').addEventListener('click', function(){
+    const code = currentProfile && currentProfile.link_code;
+    if(!code) return;
+    try{ navigator.clipboard.writeText(code); }catch(e){}
+    toast(t('Code copied', 'تم نسخ الكود'), t('Send it to your parent: ', 'أرسله لولي أمرك: ') + code);
+  });
+
+  // ---------- parents: children ----------
+  const childrenList = document.getElementById('childrenList');
+  const ovChildren = document.getElementById('ovChildren');
+  let childrenCache = [];
+
+  function childCard(rep){
+    const st = rep.student || {};
+    const days = new Set(rep.read_days || []);
+    let streak = 0, off = days.has(isoDay(0)) ? 0 : -1;
+    while(days.has(isoDay(off))){ streak++; off--; }
+    const lastExam = (rep.exams || [])[0];
+    const lastNote = (rep.progress || [])[0];
+    const passedLevels = (rep.exams || []).filter(function(e){ return e.passed; }).map(function(e){ return e.level; })
+      .filter(function(l, i, a){ return a.indexOf(l) === i; });
+    return '<article class="child-card">' +
+      '<header>' + avatar(st.full_name, 'lg') + '<div><b>' + esc(st.full_name) + '</b><span>' + esc(st.club || '') + '</span></div></header>' +
+      '<div class="child-stats">' +
+        '<div><b>' + streak + '🔥</b><span>' + t('day streak', 'أيام متتالية') + '</span></div>' +
+        '<div><b>' + (rep.books_week || 0) + '</b><span>' + t('books this week', 'كتب هذا الأسبوع') + '</span></div>' +
+        '<div><b>' + passedLevels.length + '</b><span>' + t('levels passed', 'مستويات ناجحة') + '</span></div>' +
+      '</div>' +
+      '<ul class="child-facts">' +
+        '<li><i>📝</i>' + (lastExam ? esc(lastExam.level) + ' — ' + lastExam.score + '% ' + (lastExam.passed ? '✅' : '') + ' <small>' + fmtTime(lastExam.at) + '</small>'
+                                    : t('No exams taken yet', 'لم يؤدِّ أي امتحان بعد')) + '</li>' +
+        '<li><i>👩‍🏫</i>' + (lastNote ? '<b>' + esc(lastNote.status || '') + '</b> ' + esc(lastNote.note || '') + ' <small>' + fmtTime(lastNote.at) + '</small>'
+                                     : t('No teacher notes yet', 'لا توجد ملاحظات من المعلم بعد')) + '</li>' +
+      '</ul>' +
+      '<footer>' +
+        '<button class="btn-primary" type="button" data-chat="' + esc(st.id) + '">💬 ' + t('Message teachers', 'راسل المعلمين') + '</button>' +
+        (passedLevels.length ? '<button class="btn-ghost" type="button" data-certs="' + esc(st.id) + '">🎓 ' + t('Certificates', 'الشهادات') + '</button>' : '') +
+      '</footer>' +
+    '</article>';
+  }
+
+  async function loadChildren(){
+    if(!isParent()) return;
+    const { data: links, error } = await sb.from('parent_links').select('student_id').eq('parent_id', currentProfile.id);
+    if(error){
+      const msg = isMissing(error) ? t('Run the latest supabase/schema.sql to enable parent accounts.', 'شغّل أحدث نسخة من supabase/schema.sql لتفعيل حسابات أولياء الأمور.') : friendlyErrorMessage(error);
+      childrenList.innerHTML = ovChildren.innerHTML = '<div class="lib-empty">' + esc(msg) + '</div>';
+      return;
+    }
+    const reports = await Promise.all((links || []).map(function(l){
+      return sb.rpc('student_report', { p_student: l.student_id }).then(function(r){ return r.data; });
+    }));
+    childrenCache = reports.filter(Boolean);
+    const empty = '<div class="empty-state"><div>👨‍👩‍👧</div><b>' + t('Link your first child', 'اربط أول ابن لك') + '</b><span>' +
+      t('Ask your child for the 6-character code on their dashboard, then add it under “My children”.',
+        'اطلب من ابنك الكود المكوّن من ٦ رموز من لوحة التحكم الخاصة به، ثم أضفه في قسم «أبنائي».') + '</span></div>';
+    const html = childrenCache.length ? childrenCache.map(childCard).join('') : empty;
+    childrenList.innerHTML = html;
+    ovChildren.innerHTML = '<div class="children-grid">' + html + '</div>';
+  }
+
+  [childrenList, ovChildren].forEach(function(el){
+    el.addEventListener('click', function(e){
+      const chatBtn = e.target.closest('[data-chat]');
+      const certBtn = e.target.closest('[data-certs]');
+      if(chatBtn){ showDashView('messages'); openThread(chatBtn.dataset.chat); }
+      if(certBtn){ showDashView('certificates'); loadCertificates(certBtn.dataset.certs); }
+    });
+  });
+
+  document.getElementById('linkChildForm').addEventListener('submit', async function(e){
+    e.preventDefault();
+    const input = document.getElementById('linkCode');
+    const msg = document.getElementById('linkMsg');
+    const { data, error } = await sb.rpc('link_child', { p_code: input.value.trim() });
+    if(error){
+      msg.style.color = '#B4213D';
+      msg.textContent = /no student/i.test(error.message) ? t('No student has this code — check it with your child.', 'لا يوجد طالب بهذا الكود — تأكد منه مع ابنك.') : friendlyErrorMessage(error);
+      return;
+    }
+    const child = Array.isArray(data) ? data[0] : data;
+    msg.style.color = '#2e7d32';
+    msg.textContent = t('Linked! You can now follow ' + child.full_name + '.', 'تم الربط! يمكنك الآن متابعة ' + child.full_name + '.');
+    input.value = '';
+    await loadChildren();
+    refreshUnread();
+  });
+
+  // ---------- chat ----------
+  const chatEl = document.getElementById('chat');
+  const chatInbox = document.getElementById('chatInbox');
+  const chatSearch = document.getElementById('chatSearch');
+  const chatMsgs = document.getElementById('chatMsgs');
+  const chatForm = document.getElementById('chatForm');
+  const chatInput = document.getElementById('chatInput');
+  const chatPrivate = document.getElementById('chatPrivate');
+  const chatPrivateWrap = document.getElementById('chatPrivateWrap');
+  const msgBadge = document.getElementById('msgBadge');
+  let inboxCache = [];
+  let openStudent = null;
+  let chatAvailable = true;
+
+  function renderInbox(){
+    const q = (chatSearch.value || '').trim().toLowerCase();
+    const rows = inboxCache.filter(function(r){
+      return !q || (r.student_name + ' ' + (r.club || '')).toLowerCase().indexOf(q) !== -1;
+    });
+    chatInbox.innerHTML = rows.length ? rows.map(function(r){
+      const title = isStudent() ? t('My teachers & parents', 'معلميّ وولي أمري') : r.student_name;
+      return '<button type="button" class="inbox-row' + (r.student_id === openStudent ? ' active' : '') + (r.unread ? ' unread' : '') + '" data-thread="' + esc(r.student_id) + '">' +
+        avatar(r.student_name) +
+        '<span class="ib-main"><b>' + esc(title) + '</b><span>' +
+          (r.last_body ? esc((r.last_sender ? r.last_sender.split(' ')[0] + ': ' : '') + r.last_body) : esc(r.club || t('No messages yet', 'لا توجد رسائل بعد'))) +
+        '</span></span>' +
+        '<span class="ib-side"><small>' + fmtTime(r.last_at) + '</small>' + (r.unread ? '<i>' + r.unread + '</i>' : '') + '</span>' +
+      '</button>';
+    }).join('') : '<div class="lib-empty">' + esc(t('No conversations yet.', 'لا توجد محادثات بعد.')) + '</div>';
+  }
+
+  async function loadInbox(){
+    if(!currentProfile || !chatAvailable) return;
+    const { data, error } = await sb.rpc('chat_inbox');
+    if(error){
+      if(isMissing(error)){
+        chatAvailable = false;
+        chatInbox.innerHTML = '<div class="lib-empty">' + esc(t('Run the latest supabase/schema.sql to turn on messages.', 'شغّل أحدث نسخة من supabase/schema.sql لتفعيل الرسائل.')) + '</div>';
+      }
+      return;
+    }
+    inboxCache = data || [];
+    chatEl.classList.toggle('solo', isStudent());
+    document.getElementById('msgSub').textContent = isStudent()
+      ? t('Your conversation with your teachers and parents.', 'محادثتك مع معلميك وولي أمرك.')
+      : isParent() ? t('One conversation per child — with their teachers.', 'محادثة لكل ابن — مع معلميه.')
+                   : t('One conversation per student — the student, their parents and the teachers.', 'محادثة لكل طالب — مع الطالب وولي أمره والمعلمين.');
+    renderInbox();
+    updateBadge();
+    if(isStudent() && inboxCache[0] && !openStudent) openThread(inboxCache[0].student_id);
+  }
+
+  function updateBadge(){
+    const total = inboxCache.reduce(function(n, r){ return n + Number(r.unread || 0); }, 0);
+    msgBadge.hidden = !total;
+    msgBadge.textContent = total > 99 ? '99+' : total;
+  }
+  async function refreshUnread(){
+    if(!currentProfile || !chatAvailable) return;
+    const { data, error } = await sb.rpc('chat_inbox');
+    if(error){ if(isMissing(error)) chatAvailable = false; return; }
+    inboxCache = data || [];
+    updateBadge();
+    if(!document.querySelector('.dash-view[data-view="messages"]').hidden) renderInbox();
+  }
+
+  function bubble(m){
+    const mine = m.sender_id === currentProfile.id;
+    return '<div class="msg' + (mine ? ' mine' : '') + (m.private ? ' private' : '') + '">' +
+      (mine ? '' : avatar(m.sender_name, 'sm')) +
+      '<div class="bubble">' +
+        (mine ? '' : '<b>' + esc(m.sender_name || '') + ' <em>' + esc(roleName(m.sender_role)) + '</em></b>') +
+        '<p>' + esc(m.body).replace(/\n/g, '<br>') + '</p>' +
+        '<small>' + (m.private ? '🔒 ' : '') + fmtTime(m.created_at) + '</small>' +
+      '</div></div>';
+  }
+
+  async function markRead(studentId){
+    await sb.from('chat_reads').upsert({ user_id: currentProfile.id, student_id: studentId, last_read_at: new Date().toISOString() });
+    const row = inboxCache.find(function(r){ return r.student_id === studentId; });
+    if(row){ row.unread = 0; updateBadge(); renderInbox(); }
+  }
+
+  async function openThread(studentId){
+    openStudent = studentId;
+    chatEl.classList.add('open');
+    let row = inboxCache.find(function(r){ return r.student_id === studentId; });
+    if(!row){ await loadInbox(); row = inboxCache.find(function(r){ return r.student_id === studentId; }) || {}; }
+    document.getElementById('chatTitle').textContent = isStudent() ? t('My teachers & parents', 'معلميّ وولي أمري') : (row.student_name || '');
+    document.getElementById('chatMeta').textContent = isStudent() ? t('Everyone here can read your messages', 'كل المشاركين يرون رسائلك')
+                                                                  : (row.club || '') + ' · ' + t('student, parents & teachers', 'الطالب وولي الأمر والمعلمون');
+    document.getElementById('chatAvatar').outerHTML = '<div class="chat-avatar" id="chatAvatar">' + avatar(row.student_name || '?') + '</div>';
+    chatPrivateWrap.hidden = isStudent();
+    chatForm.hidden = false;
+    chatMsgs.innerHTML = '<div class="chat-empty"><span>' + esc(t('Loading…', 'جارٍ التحميل…')) + '</span></div>';
+    renderInbox();
+    const { data, error } = await sb.from('messages').select('*').eq('student_id', studentId).order('created_at', { ascending: true }).limit(300);
+    if(openStudent !== studentId) return;
+    if(error){ chatMsgs.innerHTML = '<div class="lib-empty">' + esc(friendlyErrorMessage(error)) + '</div>'; return; }
+    chatMsgs.innerHTML = (data && data.length) ? data.map(bubble).join('')
+      : '<div class="chat-empty">👋<span>' + esc(t('Say hello — this is the start of the conversation.', 'ابدأ المحادثة بتحية!')) + '</span></div>';
+    chatMsgs.scrollTop = chatMsgs.scrollHeight;
+    markRead(studentId);
+    chatInput.focus();
+  }
+
+  chatInbox.addEventListener('click', function(e){
+    const row = e.target.closest('[data-thread]');
+    if(row) openThread(row.dataset.thread);
+  });
+  chatSearch.addEventListener('input', renderInbox);
+  document.getElementById('chatBack').addEventListener('click', function(){ chatEl.classList.remove('open'); });
+  chatInput.addEventListener('input', function(){
+    chatInput.style.height = 'auto';
+    chatInput.style.height = Math.min(chatInput.scrollHeight, 140) + 'px';
+  });
+  chatInput.addEventListener('keydown', function(e){
+    if(e.key === 'Enter' && !e.shiftKey){ e.preventDefault(); chatForm.requestSubmit(); }
+  });
+  chatForm.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const body = chatInput.value.trim();
+    if(!body || !openStudent) return;
+    const isPrivate = !isStudent() && chatPrivate.checked;
+    chatInput.value = '';
+    chatInput.style.height = 'auto';
+    const { data, error } = await sb.from('messages').insert({ student_id: openStudent, body: body, private: isPrivate }).select().single();
+    if(error){ chatInput.value = body; toast(t('Message not sent', 'لم تُرسل الرسالة'), friendlyErrorMessage(error), true); return; }
+    appendMessage(data);
+    markRead(openStudent);
+  });
+
+  function appendMessage(m){
+    if(chatMsgs.querySelector('[data-mid="' + m.id + '"]')) return;
+    const empty = chatMsgs.querySelector('.chat-empty');
+    if(empty) empty.remove();
+    const wrap = document.createElement('div');
+    wrap.innerHTML = bubble(m);
+    const el = wrap.firstChild;
+    el.dataset.mid = m.id;
+    chatMsgs.appendChild(el);
+    chatMsgs.scrollTop = chatMsgs.scrollHeight;
+  }
+
+  function onNewMessage(m){
+    if(!currentProfile || !m.id) return;
+    const viewing = openStudent === m.student_id && !document.querySelector('.dash-view[data-view="messages"]').hidden;
+    if(viewing){ appendMessage(m); markRead(m.student_id); }
+    else if(m.sender_id !== currentProfile.id){
+      toast('💬 ' + (m.sender_name || t('New message', 'رسالة جديدة')), m.body.length > 90 ? m.body.slice(0, 90) + '…' : m.body);
+    }
+    refreshUnread();
+  }
+
+  // ---------- certificates ----------
+  const certList = document.getElementById('certList');
+  const certModal = document.getElementById('certModal');
+  const certSheet = document.getElementById('certSheet');
+  let certCache = [];
+
+  async function loadCertificates(studentId){
+    if(!currentProfile) return;
+    let data = [], error = null;
+    // parents see every linked child's certificates
+    const ids = studentId ? [studentId] : isParent() ? childrenCache.map(function(r){ return r.student && r.student.id; }) : [null];
+    const results = await Promise.all(ids.map(function(id){ return sb.rpc('my_certificates', { p_student: id }); }));
+    results.forEach(function(r){ if(r.error) error = r.error; else data = data.concat(r.data || []); });
+    if(error){
+      certList.innerHTML = '<div class="lib-empty">' + esc(isMissing(error) ? t('Run the latest supabase/schema.sql to enable certificates.', 'شغّل أحدث نسخة من supabase/schema.sql لتفعيل الشهادات.') : friendlyErrorMessage(error)) + '</div>';
+      return;
+    }
+    certCache = data || [];
+    certList.innerHTML = certCache.length ? certCache.map(function(c, i){
+      return '<article class="cert-card">' +
+        '<div class="cert-ribbon">🎓</div>' +
+        '<b>' + esc(c.level) + '</b>' +
+        '<span>' + esc(c.club) + '</span>' +
+        '<small>' + esc(c.full_name) + ' · ' + c.score + '% · ' + fmtDate(c.issued_at) + '</small>' +
+        '<button class="btn-primary" type="button" data-cert="' + i + '">' + t('View certificate', 'عرض الشهادة') + '</button>' +
+      '</article>';
+    }).join('') : '<div class="empty-state"><div>🎓</div><b>' + t('No certificates yet', 'لا توجد شهادات بعد') + '</b><span>' +
+      t('Pass a level exam with 70% or more and your certificate appears here.', 'انجح في امتحان مستوى بنسبة ٧٠٪ أو أكثر وستظهر شهادتك هنا.') + '</span></div>';
+  }
+
+  certList.addEventListener('click', function(e){
+    const btn = e.target.closest('[data-cert]');
+    if(!btn) return;
+    const c = certCache[+btn.dataset.cert];
+    certSheet.innerHTML =
+      '<div class="cs-border">' +
+        '<div class="cs-brand">CODE CADEMY</div>' +
+        '<div class="cs-kicker">Certificate of Achievement · شهادة إنجاز</div>' +
+        '<p class="cs-pre">This certifies that</p>' +
+        '<h2 class="cs-name">' + esc(c.full_name) + '</h2>' +
+        '<p class="cs-pre">has successfully completed</p>' +
+        '<h3 class="cs-level">' + esc(c.level) + '</h3>' +
+        '<p class="cs-club">' + esc(c.club) + ' — English Immersion</p>' +
+        '<div class="cs-foot">' +
+          '<div><b>' + fmtDate(c.issued_at) + '</b><span>Date</span></div>' +
+          '<div class="cs-seal">' + c.score + '%</div>' +
+          '<div><b>' + esc(String(c.id).slice(0, 8).toUpperCase()) + '</b><span>Certificate ID</span></div>' +
+        '</div>' +
+      '</div>';
+    certModal.hidden = false;
+  });
+  document.getElementById('certClose').addEventListener('click', function(){ certModal.hidden = true; });
+  document.getElementById('certPrint').addEventListener('click', function(){ window.print(); });
+
+  // ---------- admin: users & roles ----------
+  const usersTable = document.getElementById('usersTable');
+  const usersSearch = document.getElementById('usersSearch');
+  const usersFilter = document.getElementById('usersFilter');
+  let usersCache = [];
+  let usersRole = 'all';
+
+  function renderUsers(){
+    const q = (usersSearch.value || '').trim().toLowerCase();
+    const rows = usersCache.filter(function(u){
+      return (usersRole === 'all' || u.role === usersRole || (usersRole === 'teacher' && u.role === 'admin')) &&
+             (!q || ((u.full_name || '') + ' ' + (u.email || '')).toLowerCase().indexOf(q) !== -1);
+    });
+    usersTable.innerHTML = rows.length ? rows.map(function(u){
+      const me = u.id === currentProfile.id;
+      return '<div class="user-row" data-uid="' + esc(u.id) + '">' +
+        avatar(u.full_name) +
+        '<div class="ur-main"><b>' + esc(u.full_name || '—') + (me ? ' <em>(' + t('you', 'أنت') + ')</em>' : '') + '</b><span>' + esc(u.email || '') + (u.club ? ' · ' + esc(u.club) : '') + '</span></div>' +
+        '<span class="role-pill role-' + esc(u.role) + '">' + esc(roleName(u.role)) + '</span>' +
+        '<select class="ur-role" aria-label="Role"' + (me ? ' disabled' : '') + '>' +
+          ['student', 'parent', 'teacher', 'admin'].map(function(r){
+            return '<option value="' + r + '"' + (r === u.role ? ' selected' : '') + '>' + roleName(r) + '</option>';
+          }).join('') +
+        '</select>' +
+      '</div>';
+    }).join('') : '<div class="lib-empty">' + esc(t('No users match.', 'لا يوجد مستخدمون مطابقون.')) + '</div>';
+  }
+
+  async function loadUsers(){
+    if(!isAdmin()) return;
+    const { data, error } = await sb.rpc('admin_list_users');
+    if(error){ usersTable.innerHTML = '<div class="lib-empty">' + esc(friendlyErrorMessage(error)) + '</div>'; return; }
+    usersCache = data || [];
+    renderUsers();
+  }
+  usersSearch.addEventListener('input', renderUsers);
+  usersFilter.addEventListener('click', function(e){
+    const b = e.target.closest('[data-role]');
+    if(!b) return;
+    usersFilter.querySelectorAll('.lib-tab').forEach(function(x){ x.classList.toggle('active', x === b); });
+    usersRole = b.dataset.role;
+    renderUsers();
+  });
+  usersTable.addEventListener('change', async function(e){
+    const sel = e.target.closest('.ur-role');
+    if(!sel) return;
+    const row = sel.closest('[data-uid]');
+    const u = usersCache.find(function(x){ return x.id === row.dataset.uid; });
+    const role = sel.value;
+    if(role === 'admin' && !confirm(t('Give ' + u.full_name + ' full admin access?', 'منح ' + u.full_name + ' صلاحيات المدير الكاملة؟'))){ sel.value = u.role; return; }
+    const { error } = await sb.rpc('set_user_role', { p_user: u.id, p_role: role });
+    if(error){ sel.value = u.role; toast(t('Role not changed', 'لم يتم تغيير الدور'), friendlyErrorMessage(error), true); return; }
+    u.role = role;
+    renderUsers();
+    toast('✅ ' + t('Role updated', 'تم تحديث الدور'), u.full_name + ' → ' + roleName(role));
+  });
+
   // re-render text built in JavaScript when the visitor switches language
   window.__refreshDynamicText = function(){
     if(!currentProfile) return;
     renderMaterials();
     showPickedFile();
     loadReadingHub();
+    if(isParent()) loadChildren();
+    renderInbox();
   };
 
   sb.auth.onAuthStateChange(function(){ refreshSession(); });
@@ -2889,6 +3793,64 @@ revealEls.forEach(el=>revealObserver.observe(el));
 /* ===== Language switcher (EN / AR) ===== */
 (function(){
   const DICT = {
+    "Welcome back,":"مرحباً بعودتك،",
+    "My children":"أبنائي",
+    "Messages":"الرسائل",
+    "Users & roles":"المستخدمون والصلاحيات",
+    "Connect your parent":"اربط ولي أمرك",
+    "Share this code so your parent can follow your progress and message your teachers.":"شارك هذا الكود مع ولي أمرك ليتابع تقدّمك ويراسل معلميك.",
+    "Add a child with their 6-character code":"أضف ابنك باستخدام الكود المكوّن من ٦ رموز",
+    "Link child":"اربط الابن",
+    "Your child finds the code on their dashboard, under Overview or Profile.":"يجد ابنك الكود في لوحة التحكم الخاصة به، في «نظرة عامة» أو «الملف الشخصي».",
+    "Follow reading, exams and teacher notes — and message the teachers directly.":"تابع القراءة والامتحانات وملاحظات المعلمين — وراسل المعلمين مباشرة.",
+    "Talk with teachers, students and parents in one place.":"تواصل مع المعلمين والطلاب وأولياء الأمور في مكان واحد.",
+    "Select a conversation":"اختر محادثة",
+    "Pick a conversation to start chatting.":"اختر محادثة لتبدأ الدردشة.",
+    "Private — only parents & teachers see it":"خاصة — يراها أولياء الأمور والمعلمون فقط",
+    "Pass a level exam and your certificate appears here — ready to print or share.":"انجح في امتحان المستوى وستظهر شهادتك هنا — جاهزة للطباعة أو المشاركة.",
+    "Only you can make someone a teacher. New sign-ups are students or parents.":"أنت فقط من يمنح صلاحية المعلم. التسجيلات الجديدة تكون طلاباً أو أولياء أمور.",
+    "Parents":"أولياء الأمور",
+    "Teachers":"المعلمون",
+    "Parent link code":"كود ربط ولي الأمر",
+    "Print / Save as PDF":"طباعة / حفظ PDF",
+    "Close":"إغلاق",
+    "Parent / guardian":"ولي أمر",
+    "Teachers: your account is created by the academy admin.":"المعلمون: يتم إنشاء حسابكم بواسطة إدارة الأكاديمية.",
+    "One platform · three experiences":"منصة واحدة · ثلاث تجارب",
+    "Students learn. Parents follow. Teachers lead.":"الطالب يتعلّم. ولي الأمر يتابع. المعلم يقود.",
+    "Books, level exams, certificates and real conversations between home and class — in Arabic and English, on any device.":"كتب وامتحانات مستويات وشهادات وتواصل حقيقي بين البيت والفصل — بالعربية والإنجليزية، على أي جهاز.",
+    "For students":"للطلاب",
+    "For parents":"لأولياء الأمور",
+    "For teachers":"للمعلمين",
+    "Read every club book right inside the site":"اقرأ كل كتب النادي داخل الموقع مباشرة",
+    "Daily reading streaks and a weekly top-readers board":"سلسلة قراءة يومية ولوحة لأكثر القرّاء أسبوعياً",
+    "Level exams that unlock the next level":"امتحانات مستوى تفتح المستوى التالي",
+    "A printable certificate for every level passed":"شهادة قابلة للطباعة لكل مستوى تنجح فيه",
+    "Link your child with one short code":"اربط ابنك بكود قصير واحد",
+    "See books read, exam results and teacher notes":"شاهد الكتب المقروءة ونتائج الامتحانات وملاحظات المعلمين",
+    "Chat directly with your child’s teachers":"تحدّث مباشرة مع معلمي ابنك",
+    "Private notes only parents and teachers can see":"ملاحظات خاصة لا يراها إلا ولي الأمر والمعلمون",
+    "Drag & drop books into any club and level":"اسحب وأفلت الكتب في أي نادٍ ومستوى",
+    "Build exams — graded automatically and securely":"أنشئ امتحانات — تُصحَّح تلقائياً وبأمان",
+    "Log attendance and progress in seconds":"سجّل الحضور والتقدّم في ثوانٍ",
+    "Announcements that reach every family instantly":"إعلانات تصل لكل أسرة فوراً",
+    "She led the role-play today 👏":"قادت تمثيل الأدوار اليوم 👏",
+    "That’s wonderful, thank you!":"رائع، شكراً جزيلاً!",
+    "Uploaded to Reading Club · A1–A2":"تم الرفع إلى نادي القراءة · A1–A2",
+    "New":"جديد",
+    "Create a free account":"أنشئ حساباً مجانياً",
+    "Questions":"أسئلة",
+    "Good to know":"معلومات تهمّك",
+    "How does my child start?":"كيف يبدأ ابني؟",
+    "Create a student account, pick the club, and start at the Beginner level. Each level ends with a short exam — pass it with 70% and the next level unlocks, along with a certificate.":"أنشئ حساب طالب واختر النادي وابدأ من المستوى المبتدئ. ينتهي كل مستوى بامتحان قصير — بالنجاح بنسبة ٧٠٪ يُفتح المستوى التالي مع شهادة.",
+    "How do parents follow their child?":"كيف يتابع ولي الأمر ابنه؟",
+    "Create a parent account, then enter the 6-character code from your child’s dashboard. You’ll see books read, exam results and teacher notes, and you can message the teachers directly.":"أنشئ حساب ولي أمر، ثم أدخل الكود المكوّن من ٦ رموز من لوحة تحكم ابنك. سترى الكتب المقروءة ونتائج الامتحانات وملاحظات المعلمين، ويمكنك مراسلة المعلمين مباشرة.",
+    "Can students see the private messages between parents and teachers?":"هل يرى الطالب الرسائل الخاصة بين ولي الأمر والمعلمين؟",
+    "No. Parents and teachers can mark a message as private — those are visible only to the child’s parents and the teachers.":"لا. يمكن لولي الأمر والمعلم جعل الرسالة خاصة — ولا يراها إلا أولياء أمور الطالب والمعلمون.",
+    "How do teachers get an account?":"كيف يحصل المعلم على حساب؟",
+    "Teacher accounts are created by the academy. Teachers sign up normally and the admin gives them teacher access.":"حسابات المعلمين تُمنح من الأكاديمية. يسجّل المعلم بشكل عادي ثم تمنحه الإدارة صلاحية المعلم.",
+    "Does it work on phones and in Arabic?":"هل يعمل على الموبايل وبالعربية؟",
+    "Yes — the whole site, dashboard and chat work on any phone, tablet or computer, in both Arabic and English.":"نعم — الموقع ولوحة التحكم والدردشة تعمل على أي موبايل أو تابلت أو كمبيوتر، بالعربية والإنجليزية.",
     /* nav */
     "Home":"الرئيسية",
     "IT Academy":"أكاديمية التقنية",
@@ -3153,6 +4115,10 @@ revealEls.forEach(el=>revealObserver.observe(el));
   const ATTRS = [
     ['#libTitle', 'placeholder', 'e.g. Oxford Reading Tree — Level 3', 'مثال: Oxford Reading Tree — المستوى 3'],
     ['#libSearch', 'placeholder', 'Search books and materials…', 'ابحث في الكتب والمواد…'],
+    ['#chatSearch', 'placeholder', 'Search conversations…', 'ابحث في المحادثات…'],
+    ['#chatInput', 'placeholder', 'Write a message…', 'اكتب رسالة…'],
+    ['#usersSearch', 'placeholder', 'Search by name or email…', 'ابحث بالاسم أو البريد…'],
+    ['#toTop', 'aria-label', 'Back to top', 'العودة للأعلى'],
     ['#readerClose', 'aria-label', 'Close', 'إغلاق'],
     ['.wa-float', 'aria-label', 'WhatsApp', 'واتساب'],
     ['.nav-mobile-toggle', 'aria-label', 'menu', 'القائمة']
@@ -3275,7 +4241,13 @@ revealEls.forEach(el=>revealObserver.observe(el));
   const toggle = document.getElementById('navToggle');
   const panel  = document.getElementById('navMobilePanel');
 
+  const progress = document.getElementById('scrollProgress');
+  const toTop = document.getElementById('toTop');
+  if(toTop) toTop.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
   function onScroll(){
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    if(progress) progress.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, window.scrollY / max) : 0) + ')';
+    if(toTop) toTop.classList.toggle('show', window.scrollY > 900);
     if(!header) return;
     header.classList.toggle('scrolled', window.scrollY > 12);
   }
