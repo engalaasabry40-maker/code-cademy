@@ -24,6 +24,8 @@
   --sans: 'Inter', sans-serif;
 }
 *{box-sizing:border-box;}
+/* the hidden attribute must always win over component display rules (e.g. teacher-only forms) */
+[hidden]{display:none !important;}
 html{scroll-behavior:smooth;}
 body{
   margin:0;
@@ -938,6 +940,37 @@ html[dir="rtl"] .pf-tag{right:auto;left:22px;}
 .faq details[open] summary::after{transform:rotate(45deg);background:var(--peach);}
 .faq details p{margin:0;padding:0 24px 22px;color:#5a4148;line-height:1.7;font-size:0.94rem;}
 
+/* ===== auth page v2 ===== */
+.auth-brand{background:radial-gradient(circle at 20% 15%,rgba(95,224,200,0.16),transparent 40%),linear-gradient(150deg,#2b0a13,#5C1A28 60%,#8A2E43) !important;}
+.auth-brand-mid{position:relative;max-width:440px;}
+.auth-points{list-style:none;padding:0;margin:30px 0 0;display:flex;flex-direction:column;gap:14px;}
+.auth-points li{display:flex;align-items:center;gap:12px;font-size:0.95rem;color:rgba(255,255,255,0.88);}
+.auth-points span{width:38px;height:38px;border-radius:12px;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex:none;}
+.auth-float{position:absolute;background:rgba(255,255,255,0.96);color:var(--maroon-deep);border-radius:14px;padding:10px 14px;box-shadow:0 18px 40px -16px rgba(0,0,0,0.5);
+  display:flex;align-items:center;gap:10px;font-size:0.8rem;animation:afFloat 6s ease-in-out infinite;}
+.auth-float b{font-family:var(--serif);font-size:1.05rem;}
+.af1{right:-40px;top:-90px;}
+.af2{right:10px;bottom:-110px;animation-delay:-3s;}
+html[dir="rtl"] .af1{right:auto;left:-40px;}
+html[dir="rtl"] .af2{right:auto;left:10px;}
+@keyframes afFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+@media(prefers-reduced-motion:reduce){.auth-float{animation:none;}}
+@media(max-width:1100px){.auth-float{display:none;}}
+.auth-back-link{border:none !important;background:none !important;padding:6px 0 !important;cursor:pointer;}
+.auth-back-link:hover{color:var(--maroon-deep);}
+.auth-tabs{background:#F4EFEB;padding:4px;border-radius:14px;gap:4px;}
+.auth-tab{border:none !important;border-radius:11px !important;background:transparent !important;color:var(--muted) !important;}
+.auth-tab.active{background:#fff !important;color:var(--maroon-deep) !important;box-shadow:var(--shadow-sm);}
+.field-label{font-size:0.78rem;font-weight:600;color:var(--maroon-deep);margin-bottom:8px;}
+.role-pick{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px;}
+.role-opt{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:14px;border-radius:14px;border:1.5px solid var(--soft-line);background:#FBF9F7;
+  text-align:start;font:inherit;cursor:pointer;transition:border-color .2s,background .2s,transform .2s;}
+.role-opt span{font-size:1.5rem;margin-bottom:4px;}
+.role-opt b{color:var(--maroon-deep);font-size:0.92rem;}
+.role-opt small{color:var(--muted);font-size:0.74rem;}
+.role-opt:hover{transform:translateY(-2px);}
+.role-opt.active{border-color:var(--maroon);background:var(--peach-soft);box-shadow:0 0 0 3px rgba(92,26,40,0.08);}
+
 /* =====================================================================
    v2 design system — dashboard, chat, parents, certificates, admin
    ===================================================================== */
@@ -1202,6 +1235,139 @@ html[dir="rtl"] .chat-send svg{transform:scaleX(-1);}
 .role-admin{background:var(--maroon-deep);color:#fff;}
 .ur-role{padding:8px 10px;border:1px solid var(--line);border-radius:10px;font:inherit;font-size:0.82rem;background:#fff;}
 .auth-hint{font-size:0.76rem;color:var(--muted);margin:-6px 0 14px;}
+
+/* ===== student learning path ===== */
+.path{display:flex;align-items:stretch;gap:0;margin:6px 0 30px;}
+.path-link{flex:0 0 26px;align-self:center;height:3px;background:repeating-linear-gradient(90deg,rgba(92,26,40,0.25) 0 6px,transparent 6px 11px);}
+.path-step{flex:1;min-width:0;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:center;text-align:start;padding:18px 18px 16px;
+  background:#fff;border:1.5px solid var(--soft-line);border-radius:18px;box-shadow:var(--shadow-sm);cursor:pointer;position:relative;
+  transition:transform .25s,box-shadow .25s,border-color .25s;font:inherit;color:inherit;}
+.path-step:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);}
+.path-step.active{border-color:var(--maroon);box-shadow:0 0 0 4px rgba(92,26,40,0.08),var(--shadow-md);}
+.path-step.locked{background:#F4F0EC;cursor:not-allowed;}
+.path-step.locked:hover{transform:none;box-shadow:var(--shadow-sm);}
+.path-step.locked .ps-body,.path-step.locked .ps-meta{opacity:.6;}
+.ps-badge{grid-row:span 2;width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;
+  background:var(--peach-soft);}
+.path-step.passed .ps-badge{background:#2e7d32;color:#fff;font-weight:800;font-size:1.2rem;}
+.path-step.working .ps-badge{background:var(--grad-brand);box-shadow:0 8px 18px -8px rgba(92,26,40,0.7);animation:psPulse 2.4s ease-in-out infinite;}
+@keyframes psPulse{0%,100%{box-shadow:0 0 0 0 rgba(92,26,40,0.35);}50%{box-shadow:0 0 0 8px rgba(92,26,40,0);}}
+@media(prefers-reduced-motion:reduce){.path-step.working .ps-badge{animation:none;}}
+.ps-body small{display:block;font-size:0.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--maroon);}
+.path-step.working .ps-body small{color:#1d6b5b;}
+.ps-body b{font-family:var(--serif);font-size:1.15rem;color:var(--maroon-deep);margin-inline-end:6px;}
+.ps-body em{font-style:normal;font-size:0.78rem;color:var(--muted);}
+.ps-bar{grid-column:1/-1;height:6px;border-radius:4px;background:rgba(92,26,40,0.08);overflow:hidden;margin-top:10px;}
+.ps-bar i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--maroon),var(--cyan-dim));transition:width .6s cubic-bezier(.2,.8,.2,1);}
+.path-step.passed .ps-bar i{background:#2e7d32;}
+.ps-meta{grid-column:1/-1;font-size:0.76rem;color:var(--muted);}
+.path-step.passed .ps-meta{color:#2e7d32;font-weight:600;}
+@media(max-width:860px){
+  .path{flex-direction:column;}
+  .path-link{flex:0 0 18px;width:3px;height:auto;align-self:flex-start;margin-inline-start:41px;
+    background:repeating-linear-gradient(180deg,rgba(92,26,40,0.25) 0 6px,transparent 6px 11px);}
+}
+
+.shelf-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:0 0 14px;}
+.shelf-head h4{font-family:var(--serif);font-size:1.3rem;color:var(--maroon-deep);margin:0 0 4px;}
+.shelf-head span{font-size:0.84rem;color:var(--muted);}
+
+/* book covers */
+.lib-grid.shelf{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:22px 18px;}
+.book{--h:340;display:flex;flex-direction:column;gap:10px;}
+.book-cover{position:relative;aspect-ratio:3/4;border:none;border-radius:6px 14px 14px 6px;padding:18px 14px 16px 22px;cursor:pointer;text-align:start;
+  display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;font:inherit;
+  background:linear-gradient(150deg,hsl(var(--h) 45% 42%),hsl(calc(var(--h) + 30) 50% 26%));color:#fff;
+  box-shadow:0 2px 3px rgba(0,0,0,0.12),0 18px 30px -18px hsl(var(--h) 60% 20% / .8),inset -6px 0 12px -8px rgba(0,0,0,0.4);
+  transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s;}
+html[dir="rtl"] .book-cover{border-radius:14px 6px 6px 14px;padding:18px 22px 16px 14px;}
+.book-cover::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,0.18),transparent 40%);pointer-events:none;}
+.book-cover:hover{transform:translateY(-6px) rotate(-1deg);box-shadow:0 2px 3px rgba(0,0,0,0.12),0 26px 40px -18px hsl(var(--h) 60% 20% / .9);}
+.bc-spine{position:absolute;inset:0 auto 0 0;width:10px;background:rgba(0,0,0,0.22);box-shadow:1px 0 0 rgba(255,255,255,0.15);}
+html[dir="rtl"] .bc-spine{inset:0 0 0 auto;}
+.bc-icon{font-size:1.6rem;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.25));}
+.bc-title{font-family:var(--serif);font-weight:600;font-size:1.02rem;line-height:1.3;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;
+  text-shadow:0 1px 2px rgba(0,0,0,0.25);}
+.bc-done,.bc-new{position:absolute;top:10px;right:10px;font-size:0.68rem;font-weight:800;border-radius:12px;padding:3px 8px;}
+html[dir="rtl"] .bc-done,html[dir="rtl"] .bc-new{right:auto;left:10px;}
+.bc-done{background:#fff;color:#2e7d32;width:24px;height:24px;padding:0;display:flex;align-items:center;justify-content:center;font-size:0.85rem;}
+.bc-new{background:var(--cyan);color:var(--graphite);letter-spacing:.06em;}
+.book.is-read .book-cover{filter:saturate(.75);}
+.book-actions{display:flex;gap:8px;}
+.book-read{flex:1;padding:9px 10px;border-radius:10px;border:none;background:var(--maroon-deep);color:#fff;font-weight:600;font-size:0.84rem;transition:background .2s;}
+.book-read:hover{background:var(--maroon);}
+.book.is-read .book-read{background:#fff;color:var(--maroon-deep);border:1px solid var(--soft-line);}
+.book-dl{width:38px;display:flex;align-items:center;justify-content:center;border-radius:10px;border:1px solid var(--soft-line);background:#fff;color:var(--maroon-deep);font-size:0.9rem;}
+.book-dl:hover{background:var(--peach-soft);}
+
+.locked-card{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;padding:46px 20px;background:#fff;border:1px dashed rgba(92,26,40,0.25);
+  border-radius:var(--radius);}
+.locked-card div{font-size:2.4rem;}
+.locked-card b{font-family:var(--serif);font-size:1.2rem;color:var(--maroon-deep);}
+.locked-card span{color:var(--muted);font-size:0.9rem;max-width:420px;line-height:1.55;}
+
+/* exam call to action */
+.exam-cta{display:flex;align-items:center;gap:18px;margin-top:30px;padding:22px 24px;border-radius:18px;color:#fff;background:var(--grad-brand);
+  box-shadow:0 24px 44px -26px rgba(62,15,27,0.85);flex-wrap:wrap;position:relative;overflow:hidden;}
+.exam-cta::after{content:'';position:absolute;width:220px;height:220px;border-radius:50%;right:-70px;top:-110px;background:rgba(95,224,200,0.18);}
+html[dir="rtl"] .exam-cta::after{right:auto;left:-70px;}
+.exam-cta.passed{background:linear-gradient(135deg,#1d5e45,#2e7d32);}
+.exam-cta-icon{width:58px;height:58px;border-radius:16px;background:rgba(255,255,255,0.14);display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex:none;}
+.exam-cta-text{flex:1;min-width:220px;position:relative;z-index:1;}
+.exam-cta-text b{display:block;font-family:var(--serif);font-size:1.2rem;margin-bottom:3px;}
+.exam-cta-text p{margin:0;font-size:0.88rem;opacity:.85;line-height:1.5;}
+.exam-cta .btn-primary{background:#fff;color:var(--maroon-deep);position:relative;z-index:1;padding:12px 20px;}
+.exam-cta.passed .btn-primary{color:#1d5e45;}
+.exam-cta .btn-primary:hover{background:var(--peach-soft);}
+
+/* step-by-step exam */
+.quiz{margin-top:24px;background:#fff;border:1px solid var(--soft-line);border-radius:20px;box-shadow:var(--shadow-md);padding:26px 28px 24px;}
+.quiz-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;}
+.quiz-top h4{font-family:var(--serif);font-size:1.2rem;color:var(--maroon-deep);margin:0;}
+.quiz-x{width:34px;height:34px;border-radius:50%;border:1px solid var(--soft-line);background:#fff;color:var(--muted);}
+.quiz-progress{height:8px;border-radius:6px;background:rgba(92,26,40,0.08);overflow:hidden;}
+.quiz-progress i{display:block;height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,var(--maroon),var(--cyan));transition:width .4s ease;}
+.quiz-count{display:block;font-size:0.76rem;font-weight:700;color:var(--muted);letter-spacing:.04em;margin:10px 0 18px;}
+.quiz .exam-q{animation:viewIn .3s ease-out;margin:0;}
+.quiz .exam-q>p{font-family:var(--serif);font-size:1.3rem;font-weight:600;line-height:1.4;color:var(--maroon-deep);margin:0 0 18px;}
+.exam-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:640px){.exam-opts{grid-template-columns:1fr;}.quiz{padding:20px 18px;}}
+.quiz .exam-opt{display:flex;align-items:center;gap:12px;padding:14px 16px;border:1.5px solid var(--soft-line);border-radius:14px;cursor:pointer;
+  font-size:0.95rem;color:var(--ink);background:#FBF9F7;transition:border-color .15s,background .15s,transform .15s;}
+.quiz .exam-opt:hover{border-color:rgba(92,26,40,0.35);background:#fff;}
+.quiz .exam-opt input{position:absolute;opacity:0;pointer-events:none;}
+.eo-key{width:30px;height:30px;border-radius:9px;flex:none;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.8rem;
+  background:#fff;border:1px solid var(--soft-line);color:var(--maroon);}
+.quiz .exam-opt:has(input:checked){border-color:var(--maroon);background:var(--peach-soft);transform:scale(1.01);}
+.quiz .exam-opt:has(input:checked) .eo-key{background:var(--maroon-deep);color:#fff;border-color:var(--maroon-deep);}
+.quiz .exam-opt:has(input:focus-visible){outline:2px solid var(--maroon);outline-offset:2px;}
+.quiz-nav{display:flex;justify-content:space-between;gap:10px;margin-top:22px;}
+.quiz-nav .btn-primary{margin-inline-start:auto;}
+.quiz-nav button:disabled{opacity:.45;cursor:not-allowed;transform:none;}
+.quiz-result{text-align:center;padding:16px 0 6px;animation:viewIn .4s ease-out;}
+.qr-ring{--p:0;width:130px;height:130px;margin:0 auto 14px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:conic-gradient(var(--ring) calc(var(--p) * 1%),rgba(92,26,40,0.08) 0);}
+.quiz-result.win{--ring:#2e7d32;}
+.quiz-result.try{--ring:#C9A227;}
+.qr-ring b{width:104px;height:104px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--serif);
+  font-size:1.9rem;color:var(--maroon-deep);}
+.quiz-result h4{font-family:var(--serif);font-size:1.5rem;color:var(--maroon-deep);margin:0 0 6px;}
+.quiz-result p{color:var(--muted);max-width:460px;margin:0 auto 18px;line-height:1.6;}
+.qr-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:600;overflow:hidden;}
+.confetti i{position:absolute;top:-12px;width:8px;height:14px;border-radius:2px;animation:confettiFall 2.6s cubic-bezier(.25,.6,.4,1) forwards;}
+@keyframes confettiFall{to{transform:translate(var(--dx),105vh) rotate(var(--r));opacity:.9;}}
+
+/* overview: next step */
+.next-step{display:flex;align-items:center;gap:18px;flex-wrap:wrap;background:#fff;border:1px solid var(--soft-line);border-radius:18px;
+  padding:20px 22px;margin-bottom:22px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden;}
+.next-step::before{content:'';position:absolute;inset:0 auto 0 0;width:5px;background:linear-gradient(180deg,var(--cyan),var(--cyan-dim));}
+html[dir="rtl"] .next-step::before{inset:0 0 0 auto;}
+.ns-icon{width:54px;height:54px;border-radius:16px;background:#EAF4F0;display:flex;align-items:center;justify-content:center;font-size:1.7rem;flex:none;}
+.ns-text{flex:1;min-width:200px;}
+.ns-text small{display:block;font-size:0.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#1d6b5b;}
+.ns-text b{display:block;font-family:var(--serif);font-size:1.2rem;color:var(--maroon-deep);margin:2px 0;}
+.ns-text span{font-size:0.86rem;color:var(--muted);}
 
 </style>
 </head>
@@ -1613,7 +1779,16 @@ html[dir="rtl"] .chat-send svg{transform:scaleX(-1);}
       <span class="mark" style="background:rgba(255,255,255,.18);width:34px;height:34px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-size:0.85rem;">CC</span>
       <span>Code Cademy</span>
     </div>
-    <div class="auth-brand-quote">“Learn by living it — real clubs, real books, and progress you can actually see.”</div>
+    <div class="auth-brand-mid">
+      <div class="auth-brand-quote">“Learn by living it — real clubs, real books, and progress you can actually see.”</div>
+      <ul class="auth-points">
+        <li><span>📚</span>Every club book, readable right here</li>
+        <li><span>📝</span>Level exams and printable certificates</li>
+        <li><span>💬</span>Parents and teachers, one tap apart</li>
+      </ul>
+      <div class="auth-float af1"><b>🔥 12</b><span>day reading streak</span></div>
+      <div class="auth-float af2"><b>🎓</b><span>Beginner (A1–A2) passed</span></div>
+    </div>
     <div class="auth-brand-foot">Code Cademy · English Immersion, French &amp; IT Academy</div>
   </div>
   <div class="auth-panel">
@@ -1639,12 +1814,15 @@ html[dir="rtl"] .chat-send svg{transform:scaleX(-1);}
         <label>Full name<input type="text" id="suName" required></label>
         <label>Email<input type="email" id="suEmail" required></label>
         <label>Password (6+ characters)<input type="password" id="suPassword" required minlength="6"></label>
-        <label>I am a…
-          <select id="suRole">
-            <option value="student">Student</option>
-            <option value="parent">Parent / guardian</option>
-          </select>
-        </label>
+        <div class="field-label">I am a…</div>
+        <div class="role-pick" role="radiogroup" aria-label="I am a…">
+          <button type="button" class="role-opt active" data-role="student" role="radio" aria-checked="true"><span>🎒</span><b>Student</b><small>I want to learn</small></button>
+          <button type="button" class="role-opt" data-role="parent" role="radio" aria-checked="false"><span>👨‍👩‍👧</span><b>Parent</b><small>I follow my child</small></button>
+        </div>
+        <select id="suRole" hidden>
+          <option value="student">Student</option>
+          <option value="parent">Parent / guardian</option>
+        </select>
         <p class="auth-hint">Teachers: your account is created by the academy admin.</p>
         <label id="suClubWrap">Club
           <select id="suClub">
@@ -1693,6 +1871,7 @@ html[dir="rtl"] .chat-send svg{transform:scaleX(-1);}
       <div class="dash-view" data-view="overview">
         <h3>Welcome back, <span id="ovName">there</span>.</h3>
         <p class="dash-sub" id="ovSub">Here's what's new in your club.</p>
+        <div class="next-step" id="ovNext" hidden></div>
         <div class="dash-stats" id="ovStats"></div>
         <div class="link-card" id="ovLinkCard" hidden>
           <div>
@@ -1774,27 +1953,43 @@ html[dir="rtl"] .chat-send svg{transform:scaleX(-1);}
           <button class="lib-tab" data-filter="Cinema Club">Cinema</button>
         </div>
 
+        <div class="path" id="learnPath" hidden></div>
+
         <div class="level-tabs" id="levelTabs">
           <button class="level-tab" data-level="Beginner (A1-A2)" type="button"><span class="lv-dot"></span>Beginner (A1-A2)</button>
           <button class="level-tab" data-level="Intermediate (B1-B2)" type="button"><span class="lv-dot"></span>Intermediate (B1-B2)</button>
           <button class="level-tab" data-level="Advanced (C1-C2)" type="button"><span class="lv-dot"></span>Advanced (C1-C2)</button>
         </div>
 
+        <div class="shelf-head" id="shelfHead" hidden>
+          <div><h4 id="shelfTitle">Books</h4><span id="shelfMeta"></span></div>
+        </div>
         <div class="lib-search-wrap">
           <input type="search" id="libSearch" class="lib-search" placeholder="Search books and materials…" aria-label="Search materials">
         </div>
-        <div id="levelLockedMsg" class="lib-empty" hidden>🔒 Finish the previous level and pass its exam to unlock this one.</div>
+        <div id="levelLockedMsg" class="locked-card" hidden><div>🔒</div><b id="lockedTitle">This level is locked</b><span id="lockedText">Finish the previous level and pass its exam to unlock this one.</span></div>
         <div class="lib-grid" id="libGrid"></div>
 
-        <div class="exam-box" id="examCTA" hidden>
-          <p id="examCTAText">Ready to move up? Pass this level's exam to unlock the next one.</p>
-          <button class="lib-submit" id="startExamBtn" type="button">Take the level exam</button>
+        <div class="exam-cta" id="examCTA" hidden>
+          <div class="exam-cta-icon" id="examCTAIcon">📝</div>
+          <div class="exam-cta-text"><b id="examCTATitle">Level exam</b><p id="examCTAText">Pass this level's exam to unlock the next one.</p></div>
+          <button class="btn-primary" id="startExamBtn" type="button">Start the exam</button>
         </div>
 
-        <div class="exam-box" id="examPanel" hidden>
-          <h4 id="examTitle">Level exam</h4>
+        <div class="quiz" id="examPanel" hidden>
+          <div class="quiz-top">
+            <h4 id="examTitle">Level exam</h4>
+            <button class="quiz-x" id="examCancel" type="button" aria-label="Close">✕</button>
+          </div>
+          <div class="quiz-progress"><i id="quizBar"></i></div>
+          <span class="quiz-count" id="quizCount"></span>
           <div id="examQuestions"></div>
-          <button class="lib-submit" id="submitExamBtn" type="button">Submit exam</button>
+          <div class="quiz-nav" id="quizNav">
+            <button class="btn-ghost" id="quizPrev" type="button">← Back</button>
+            <button class="btn-primary" id="quizNext" type="button">Next →</button>
+            <button class="btn-primary" id="submitExamBtn" type="button">Submit exam</button>
+          </div>
+          <div class="quiz-result" id="quizResult" hidden></div>
           <p id="examResult" class="auth-error"></p>
         </div>
 
@@ -2422,9 +2617,8 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
     authPage.hidden = false;
     document.body.style.overflow = 'hidden';
     if(mode === 'signup' || mode === 'login'){
-      authTabButtons.forEach(t=>t.classList.toggle('active', t.dataset.tab === mode));
-      loginForm.hidden = mode !== 'login';
-      signupForm.hidden = mode !== 'signup';
+      const tab = document.querySelector('.auth-tab[data-tab="' + mode + '"]');
+      if(tab) tab.click(); // also updates the title and subtitle
     }
   }
   function closeAuth(){
@@ -2446,12 +2640,22 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
       loginForm.hidden = !isLogin;
       signupForm.hidden = isLogin;
       authPageTitle.textContent = isLogin ? 'Welcome back' : 'Create your account';
-      authPageSub.textContent = isLogin ? 'Sign in to reach your dashboard.' : 'Join as a student or a teacher — it takes a minute.';
+      authPageSub.textContent = isLogin ? 'Sign in to reach your dashboard.' : 'Join as a student or a parent — it takes a minute.';
     });
   });
 
   suRole.addEventListener('change', ()=>{
     suClubWrap.hidden = suRole.value !== 'student';
+  });
+  document.querySelectorAll('.role-opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.role-opt').forEach(function(b){
+        b.classList.toggle('active', b === btn);
+        b.setAttribute('aria-checked', b === btn ? 'true' : 'false');
+      });
+      suRole.value = btn.dataset.role;
+      suRole.dispatchEvent(new Event('change'));
+    });
   });
 
   // "Failed to fetch" from supabase-js almost always means the page can't reach
@@ -2639,6 +2843,7 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
     tabStudents.hidden = !isTeacher();
     tabProgress.hidden = !isStudent();
     document.getElementById('tabMaterials').hidden = isParent();
+    document.querySelector('#tabMaterials span').textContent = isStudent() ? t('My learning', 'تعلّمي') : t('Materials', 'المواد');
     document.getElementById('tabChildren').hidden = !isParent();
     document.getElementById('tabUsers').hidden = !isAdmin();
     document.getElementById('tabCerts').hidden = isTeacher();
@@ -2656,8 +2861,8 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
       notifSub.textContent = 'Send an announcement to one club or to everyone.';
       ovSub.textContent = "Here's a quick look at your classes.";
     } else {
-      matHeading.textContent = 'Your ' + (currentProfile.club || '') + ' materials';
-      matSub.textContent = 'Everything your teacher has added to your club, in one place.';
+      matHeading.textContent = t('My learning path', 'مسار تعلّمي');
+      matSub.textContent = t('1. Pick your level  ·  2. Read its books  ·  3. Pass the exam to move up', '١. اختر مستواك  ·  ٢. اقرأ كتبه  ·  ٣. انجح في الامتحان لتنتقل للمستوى التالي');
       notifSub.textContent = 'Announcements from your teachers.';
       ovSub.textContent = "Here's what's new in " + (currentProfile.club || 'your club') + '.';
     }
@@ -2678,10 +2883,12 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
     } else {
       document.getElementById('ovChildren').innerHTML = '';
       await loadPassedLevels();
-      await loadReadingHub(); // also fills readIds, used by the material cards
+      if(isStudent()) currentLevel = currentStudentLevel();
+      await Promise.all([loadReadingHub(), loadClubBooks()]); // readIds + all club books for the path
       await Promise.all([loadMaterials(), loadOverviewStats(), loadNotifications()]);
       if(isTeacher()) await loadStudentsForProgress(); else await loadMyProgress();
     }
+    renderNextStep();
     refreshUnread();
     startRealtime();
 
@@ -2711,13 +2918,11 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
         '<div class="dash-stat"><b>' + (matCount || 0) + '</b><span>Materials uploaded</span></div>' +
         '<div class="dash-stat"><b>' + (progCount || 0) + '</b><span>Progress entries logged</span></div>';
     } else {
-      const [{ count: matCount }, { count: progCount }] = await Promise.all([
-        sb.from('materials').select('id', { count: 'exact', head: true }).eq('club', currentProfile.club),
-        sb.from('progress').select('id', { count: 'exact', head: true }).eq('student_id', currentProfile.id)
-      ]);
+      const info = LEVEL_INFO[currentStudentLevel()];
       ovStats.innerHTML =
-        '<div class="dash-stat"><b>' + (matCount || 0) + '</b><span>Materials in your club</span></div>' +
-        '<div class="dash-stat"><b>' + (progCount || 0) + '</b><span>Progress entries</span></div>';
+        '<div class="dash-stat"><b>📚 ' + readIds.size + '</b><span>' + t('Books read', 'كتب قرأتها') + '</span></div>' +
+        '<div class="dash-stat"><b>🎓 ' + passedLevels.length + ' / ' + LEVELS.length + '</b><span>' + t('Levels passed', 'مستويات نجحت فيها') + '</span></div>' +
+        '<div class="dash-stat"><b>' + info.icon + ' ' + esc(t(info.en, info.ar)) + '</b><span>' + t('Current level', 'مستواك الحالي') + '</span></div>';
     }
   }
 
@@ -2741,6 +2946,123 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
       return true;
     });
   }
+
+  // ---------- student learning path: levels → books → exam ----------
+  const learnPath = document.getElementById('learnPath');
+  const shelfHead = document.getElementById('shelfHead');
+  const LEVEL_INFO = {
+    'Beginner (A1-A2)':     { n: 1, en: 'Beginner',     ar: 'مبتدئ', cefr: 'A1–A2', icon: '🌱' },
+    'Intermediate (B1-B2)': { n: 2, en: 'Intermediate', ar: 'متوسط', cefr: 'B1–B2', icon: '🌿' },
+    'Advanced (C1-C2)':     { n: 3, en: 'Advanced',     ar: 'متقدم', cefr: 'C1–C2', icon: '🌳' }
+  };
+  function levelName(l){ const i = LEVEL_INFO[l]; return i ? t(i.en, i.ar) + ' (' + i.cefr + ')' : l; }
+  let clubBooks = []; // every material of the student's club, all levels
+
+  async function loadClubBooks(){
+    if(!isStudent()) return;
+    const { data } = await sb.from('materials').select('*').eq('club', currentProfile.club).order('created_at', { ascending: true });
+    clubBooks = data || [];
+  }
+  function levelStats(level){
+    const books = clubBooks.filter(function(b){ return b.level === level; });
+    return { total: books.length, read: books.filter(function(b){ return readIds.has(b.id); }).length, books: books };
+  }
+  // the level the student should be working on now
+  function currentStudentLevel(){
+    for(let i = 0; i < LEVELS.length; i++){ if(!isLevelPassed(LEVELS[i])) return LEVELS[i]; }
+    return LEVELS[LEVELS.length - 1];
+  }
+
+  function renderPath(){
+    if(!isStudent()){ learnPath.hidden = true; return; }
+    learnPath.hidden = false;
+    const working = currentStudentLevel();
+    learnPath.innerHTML = LEVELS.map(function(lv, i){
+      const info = LEVEL_INFO[lv];
+      const st = levelStats(lv);
+      const passed = isLevelPassed(lv), unlocked = isLevelUnlocked(lv);
+      const pct = st.total ? Math.round(st.read * 100 / st.total) : 0;
+      const state = passed ? 'passed' : !unlocked ? 'locked' : 'open';
+      const meta = passed ? '✓ ' + t('Exam passed', 'نجحت في الامتحان')
+        : !unlocked ? t('Pass Level ' + i + ' to unlock', 'انجح في المستوى ' + i + ' لفتحه')
+        : st.total ? t(st.read + ' of ' + st.total + ' books read', 'قرأت ' + st.read + ' من ' + st.total + ' كتب')
+        : t('Books coming soon', 'الكتب قريباً');
+      return '<button type="button" class="path-step ' + state + (lv === currentLevel ? ' active' : '') + (lv === working && !passed ? ' working' : '') + '" data-level="' + esc(lv) + '"' + (unlocked ? '' : ' aria-disabled="true"') + '>' +
+        '<span class="ps-badge">' + (passed ? '✓' : !unlocked ? '🔒' : info.icon) + '</span>' +
+        '<span class="ps-body"><small>' + t('Level', 'المستوى') + ' ' + info.n + (lv === working && !passed ? ' · ' + t('you are here', 'أنت هنا') : '') + '</small>' +
+          '<b>' + t(info.en, info.ar) + '</b><em>' + info.cefr + '</em></span>' +
+        '<span class="ps-bar"><i style="width:' + (passed ? 100 : pct) + '%"></i></span>' +
+        '<span class="ps-meta">' + esc(meta) + '</span>' +
+      '</button>';
+    }).join('<span class="path-link" aria-hidden="true"></span>');
+  }
+  learnPath.addEventListener('click', function(e){
+    const b = e.target.closest('.path-step');
+    if(!b) return;
+    const lv = b.dataset.level;
+    if(!isLevelUnlocked(lv)){
+      toast('🔒 ' + t('Locked level', 'مستوى مغلق'), t('Pass the exam of the level before it first.', 'انجح أولاً في امتحان المستوى السابق.'));
+      return;
+    }
+    currentLevel = lv;
+    examPanel.hidden = true;
+    loadMaterials();
+  });
+
+  function renderShelfHead(){
+    if(!isStudent()){ shelfHead.hidden = true; return; }
+    const st = levelStats(currentLevel);
+    shelfHead.hidden = false;
+    document.getElementById('shelfTitle').textContent = t('Books — ', 'كتب — ') + levelName(currentLevel);
+    document.getElementById('shelfMeta').textContent = st.total
+      ? t('Open a book to read it here. ' + st.read + ' of ' + st.total + ' read.', 'افتح أي كتاب لقراءته هنا. قرأت ' + st.read + ' من ' + st.total + '.')
+      : '';
+  }
+
+  // overview "what to do next" card for students
+  function renderNextStep(){
+    const box = document.getElementById('ovNext');
+    if(!isStudent()){ box.hidden = true; return; }
+    const lv = currentStudentLevel();
+    const st = levelStats(lv);
+    const unread = st.books.find(function(b){ return !readIds.has(b.id); });
+    let icon, title, text, btn, action;
+    if(isLevelPassed(LEVELS[LEVELS.length - 1])){
+      icon = '🏆'; title = t('You finished every level!', 'أنهيت كل المستويات!');
+      text = t('Amazing work. Your certificates are ready to print.', 'عمل رائع. شهاداتك جاهزة للطباعة.');
+      btn = t('My certificates', 'شهاداتي'); action = 'certs';
+    } else if(unread){
+      icon = '📖'; title = t('Continue reading', 'تابع القراءة');
+      text = '“' + unread.title + '” · ' + levelName(lv);
+      btn = t('Open the book', 'افتح الكتاب'); action = 'read:' + unread.id;
+    } else if(st.total){
+      icon = '📝'; title = t('You read every book in this level', 'قرأت كل كتب هذا المستوى');
+      text = t('Take the ' + levelName(lv) + ' exam to move up.', 'ادخل امتحان ' + levelName(lv) + ' لتنتقل للمستوى التالي.');
+      btn = t('Start the exam', 'ابدأ الامتحان'); action = 'exam';
+    } else {
+      icon = '⏳'; title = t('Books are on the way', 'الكتب في الطريق');
+      text = t('Your teacher hasn’t added books to ' + levelName(lv) + ' yet.', 'لم يضف معلمك كتباً لمستوى ' + levelName(lv) + ' بعد.');
+      btn = t('See my level', 'شاهد مستواي'); action = 'path';
+    }
+    box.hidden = false;
+    box.innerHTML = '<div class="ns-icon">' + icon + '</div><div class="ns-text"><small>' + t('Your next step', 'خطوتك التالية') + '</small><b>' + esc(title) + '</b><span>' + esc(text) + '</span></div>' +
+      '<button class="btn-primary" type="button" data-next="' + esc(action) + '">' + esc(btn) + ' →</button>';
+  }
+  document.getElementById('ovNext').addEventListener('click', async function(e){
+    const b = e.target.closest('[data-next]');
+    if(!b) return;
+    const a = b.dataset.next;
+    if(a === 'certs'){ showDashView('certificates'); return; }
+    currentLevel = currentStudentLevel();
+    showDashView('materials');
+    await loadMaterials();
+    if(a.indexOf('read:') === 0){
+      const book = clubBooks.find(function(x){ return String(x.id) === a.slice(5); });
+      if(book) openReader(book);
+    } else if(a === 'exam'){
+      startExamBtn.click();
+    }
+  });
 
   function updateLevelTabsUI(){
     if(!levelTabs) return;
@@ -2769,11 +3091,19 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
     const libLevelSelect = document.getElementById('libLevel');
     if(libLevelSelect) libLevelSelect.value = currentLevel;
     updateLevelTabsUI();
+    levelTabs.hidden = isStudent();
+    renderPath();
+    renderShelfHead();
 
     const locked = !isTeacher() && !isLevelUnlocked(currentLevel);
     levelLockedMsg.hidden = !locked;
     libGrid.hidden = locked;
     if(locked){
+      const prev = LEVELS[LEVELS.indexOf(currentLevel) - 1];
+      document.getElementById('lockedTitle').textContent = t('Level ' + LEVEL_INFO[currentLevel].n + ' is locked', 'المستوى ' + LEVEL_INFO[currentLevel].n + ' مغلق');
+      document.getElementById('lockedText').textContent = t('Read the ' + levelName(prev) + ' books and pass its exam to open this level.',
+                                                            'اقرأ كتب مستوى ' + levelName(prev) + ' وانجح في امتحانه لفتح هذا المستوى.');
+      shelfHead.hidden = true;
       examCTA.hidden = true;
       examPanel.hidden = true;
       if(examAdmin) examAdmin.hidden = true;
@@ -2807,12 +3137,21 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
       }
     } else {
       if(examAdmin) examAdmin.hidden = true;
-      if(isLastLevel || isLevelPassed(currentLevel)){
-        examCTA.hidden = true;
-      } else {
-        examCTA.hidden = false;
-        examCTAText.textContent = 'Ready to move up? Pass the ' + currentLevel + ' exam to unlock ' + LEVELS[LEVELS.indexOf(currentLevel) + 1] + '.';
-      }
+      if(!examPanel.hidden) return; // keep an exam in progress on screen
+      examCTA.hidden = !isStudent();
+      const passedHere = isLevelPassed(currentLevel);
+      examCTA.classList.toggle('passed', passedHere);
+      examCTA.dataset.state = passedHere ? 'passed' : 'open';
+      document.getElementById('examCTAIcon').textContent = passedHere ? '🎓' : '📝';
+      document.getElementById('examCTATitle').textContent = passedHere
+        ? t('You passed this level!', 'نجحت في هذا المستوى!')
+        : t('Level exam — ', 'امتحان المستوى — ') + levelName(currentLevel);
+      examCTAText.textContent = passedHere
+        ? (isLastLevel ? t('You completed the final level. Your certificate is ready.', 'أكملت المستوى الأخير. شهادتك جاهزة.')
+                       : t('Your certificate is ready and ' + levelName(LEVELS[LEVELS.indexOf(currentLevel) + 1]) + ' is open.', 'شهادتك جاهزة ومستوى ' + levelName(LEVELS[LEVELS.indexOf(currentLevel) + 1]) + ' مفتوح.'))
+        : t('Finished the books? Score 70% or more to ' + (isLastLevel ? 'earn your final certificate.' : 'unlock ' + levelName(LEVELS[LEVELS.indexOf(currentLevel) + 1]) + ' and get a certificate.'),
+            'خلّصت الكتب؟ احصل على ٧٠٪ أو أكثر ' + (isLastLevel ? 'لتحصل على شهادتك النهائية.' : 'لتفتح مستوى ' + levelName(LEVELS[LEVELS.indexOf(currentLevel) + 1]) + ' وتحصل على شهادة.'));
+      startExamBtn.textContent = passedHere ? t('View certificate', 'عرض الشهادة') : t('Start the exam', 'ابدأ الامتحان');
     }
   }
 
@@ -2825,8 +3164,11 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
     const items = !q ? materialsCache : materialsCache.filter(function(m){
       return (m.title + ' ' + (m.file_name || '') + ' ' + m.club).toLowerCase().indexOf(q) !== -1;
     });
+    libGrid.classList.toggle('shelf', isStudent());
     if(materialsCache.length === 0){
-      libGrid.innerHTML = '<div class="lib-empty">No materials for this level yet.</div>';
+      libGrid.innerHTML = isStudent()
+        ? '<div class="empty-state"><div>📚</div><b>' + t('No books here yet', 'لا توجد كتب هنا بعد') + '</b><span>' + t('Your teacher will add the books for this level soon.', 'سيضيف معلمك كتب هذا المستوى قريباً.') + '</span></div>'
+        : '<div class="lib-empty">No materials for this level yet.</div>';
       return;
     }
     if(items.length === 0){
@@ -2840,6 +3182,20 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
       const isRead = readIds.has(item.id);
       const badges = (isNew ? '<span class="badge-new">' + t('NEW', 'جديد') + '</span>' : '') +
                      (isRead ? '<span class="badge-read">✓ ' + t('READ', 'قرأته') + '</span>' : '');
+      if(isStudent()){
+        return '<div class="book' + (isRead ? ' is-read' : '') + '" style="--h:' + hueOf(item.title) + '">' +
+          '<button class="book-cover" type="button" data-open="' + item.id + '" aria-label="' + esc(t('Read ', 'اقرأ ') + item.title) + '">' +
+            '<span class="bc-spine"></span>' +
+            '<span class="bc-icon">' + fileIcon(ext) + '</span>' +
+            '<span class="bc-title">' + esc(item.title) + '</span>' +
+            (isRead ? '<span class="bc-done">✓</span>' : isNew ? '<span class="bc-new">' + t('NEW', 'جديد') + '</span>' : '') +
+          '</button>' +
+          '<div class="book-actions">' +
+            '<button class="book-read" type="button" data-open="' + item.id + '">' + (isRead ? t('Read again', 'اقرأ مرة أخرى') : t('Read', 'اقرأ')) + '</button>' +
+            '<a class="book-dl" data-dl="' + item.id + '" href="' + esc(downloadUrl(item)) + '" target="_blank" rel="noopener" title="' + t('Download', 'تحميل') + '" aria-label="' + t('Download', 'تحميل') + '">⬇</a>' +
+          '</div>' +
+        '</div>';
+      }
       return '<div class="lib-card' + (isRead ? ' is-read' : '') + '">' +
         (isTeacher() ? '<button class="rm" type="button" data-del="' + item.id + '" title="Delete" aria-label="Delete">✕</button>' : '') +
         (badges ? '<div class="lib-badges">' + badges + '</div>' : '') +
@@ -2952,6 +3308,10 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
     readIds.add(item.id);
     readDays.add(today);
     renderMaterials();
+    renderPath();
+    renderShelfHead();
+    renderNextStep();
+    loadOverviewStats();
     await loadReadingHub();
     if(firstToday){
       toast('🔥 ' + t('Streak: ' + streakDays.textContent + ' day(s)', 'سلسلة القراءة: ' + streakDays.textContent + ' يوم'),
@@ -3019,7 +3379,8 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
         if(!currentProfile || m.uploaded_by === currentProfile.id) return;
         if(isParent() || (!isTeacher() && m.club !== currentProfile.club)) return;
         toast('📚 ' + t('New book added', 'تمت إضافة كتاب جديد'), m.title + ' · ' + m.level);
-        loadMaterials(); loadOverviewStats();
+        loadClubBooks().then(function(){ loadMaterials(); renderNextStep(); });
+        loadOverviewStats();
       })
       .on('postgres_changes', { event: 'DELETE', schema: 'public', table: 'materials' }, function(){
         if(currentProfile){ loadMaterials(); loadOverviewStats(); }
@@ -3156,8 +3517,55 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
   // 'client' = older database without those functions.
   let examMode = 'server';
 
+  // one question at a time, with a progress bar
+  let quizIndex = 0;
+  const quizPrev = document.getElementById('quizPrev');
+  const quizNext = document.getElementById('quizNext');
+  const quizNav = document.getElementById('quizNav');
+  function answered(qi){ return !!document.querySelector('input[name="examQ' + qi + '"]:checked'); }
+  function showQuestion(i){
+    quizIndex = Math.max(0, Math.min(i, currentExamQuestions.length - 1));
+    examQuestionsEl.querySelectorAll('.exam-q').forEach(function(el){ el.hidden = +el.dataset.q !== quizIndex; });
+    const total = currentExamQuestions.length, last = quizIndex === total - 1;
+    document.getElementById('quizCount').textContent = t('Question ' + (quizIndex + 1) + ' of ' + total, 'السؤال ' + (quizIndex + 1) + ' من ' + total);
+    document.getElementById('quizBar').style.width = Math.round((quizIndex + 1) * 100 / total) + '%';
+    quizNav.hidden = false;
+    quizPrev.hidden = quizIndex === 0;
+    quizNext.hidden = last;
+    submitExamBtn.hidden = !last;
+    quizNext.disabled = !answered(quizIndex);
+    submitExamBtn.disabled = !answered(quizIndex);
+  }
+  examQuestionsEl.addEventListener('change', function(){
+    quizNext.disabled = !answered(quizIndex);
+    submitExamBtn.disabled = !answered(quizIndex);
+    // small pause so the choice is visible, then move on
+    if(quizIndex < currentExamQuestions.length - 1) setTimeout(function(){ showQuestion(quizIndex + 1); }, 350);
+  });
+  quizPrev.addEventListener('click', function(){ showQuestion(quizIndex - 1); });
+  quizNext.addEventListener('click', function(){ showQuestion(quizIndex + 1); });
+  function closeExam(){
+    examPanel.hidden = true;
+    loadMaterials();
+  }
+  document.getElementById('examCancel').addEventListener('click', function(){
+    const res = document.getElementById('quizResult');
+    if(res.hidden && !confirm(t('Leave the exam? Your answers will not be saved.', 'الخروج من الامتحان؟ لن يتم حفظ إجاباتك.'))) return;
+    closeExam();
+  });
+  document.getElementById('quizResult').addEventListener('click', function(e){
+    const b = e.target.closest('[data-res]');
+    if(!b) return;
+    const a = b.dataset.res;
+    if(a === 'certs'){ examPanel.hidden = true; showDashView('certificates'); }
+    else if(a === 'retry'){ startExamBtn.click(); }
+    else if(a === 'next'){ currentLevel = currentStudentLevel(); closeExam(); }
+    else closeExam();
+  });
+
   if(startExamBtn){
     startExamBtn.addEventListener('click', async function(){
+      if(examCTA.dataset.state === 'passed'){ showDashView('certificates'); return; }
       const rpc = await sb.rpc('get_exam', { p_club: currentProfile.club, p_level: currentLevel });
       if(!rpc.error){
         examMode = 'server';
@@ -3183,17 +3591,21 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
         return;
       }
       if(currentExamQuestions.length === 0){ alert(t('No exam questions yet for this level — ask your teacher to add some.', 'لا توجد أسئلة امتحان لهذا المستوى بعد — اطلب من معلمك إضافتها.')); return; }
-      examTitle.textContent = t('Level exam — ', 'امتحان المستوى — ') + currentLevel;
+      examTitle.textContent = t('Level exam — ', 'امتحان المستوى — ') + levelName(currentLevel);
       examQuestionsEl.innerHTML = currentExamQuestions.map(function(q, qi){
-        return '<div class="exam-q"><p>' + (qi + 1) + '. ' + esc(q.question) + '</p>' +
+        return '<div class="exam-q" data-q="' + qi + '"><p>' + esc(q.question) + '</p><div class="exam-opts">' +
           q.options.map(function(o, oi){
-            return '<label class="exam-opt"><input type="radio" name="examQ' + qi + '" value="' + oi + '"> ' + esc(o.text) + '</label>';
+            return '<label class="exam-opt"><input type="radio" name="examQ' + qi + '" value="' + oi + '"><span class="eo-key">' + 'ABCD'.charAt(oi) + '</span><span>' + esc(o.text) + '</span></label>';
           }).join('') +
-          '</div>';
+          '</div></div>';
       }).join('');
       examResult.textContent = '';
+      document.getElementById('quizResult').hidden = true;
+      examQuestionsEl.hidden = false;
       examCTA.hidden = true;
       examPanel.hidden = false;
+      showQuestion(0);
+      examPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   }
 
@@ -3227,17 +3639,56 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
         });
         if(error){ examResult.textContent = friendlyErrorMessage(error); return; }
       }
-      examResult.style.color = passed ? '#2e7d32' : '#B4213D';
-      examResult.textContent = 'Score: ' + scorePct + '% — ' + (passed
-        ? 'Passed! The next level is now unlocked.'
-        : 'Not yet — you need 70% to pass. You can try again anytime.');
+      examResult.textContent = '';
       await loadPassedLevels();
       updateLevelTabsUI();
+      const isLast = LEVELS.indexOf(currentLevel) === LEVELS.length - 1;
+      const res = document.getElementById('quizResult');
+      examQuestionsEl.hidden = true;
+      quizNav.hidden = true;
+      document.getElementById('quizCount').textContent = '';
+      document.getElementById('quizBar').style.width = '100%';
+      res.hidden = false;
+      res.className = 'quiz-result ' + (passed ? 'win' : 'try');
+      res.innerHTML =
+        '<div class="qr-ring" style="--p:' + scorePct + '"><b>' + scorePct + '%</b></div>' +
+        '<h4>' + (passed ? t('Congratulations! 🎉', 'مبروك! 🎉') : t('Almost there!', 'قربت جداً!')) + '</h4>' +
+        '<p>' + (passed
+          ? (isLast ? t('You passed the final level. Your certificate is ready.', 'نجحت في المستوى الأخير. شهادتك جاهزة.')
+                    : t('You passed and unlocked the next level. Your certificate is ready.', 'نجحت وفتحت المستوى التالي. شهادتك جاهزة.'))
+          : t('You need 70% to pass. Read the books again and try once more — you can retake it anytime.', 'تحتاج ٧٠٪ للنجاح. راجع الكتب وحاول مرة أخرى — يمكنك إعادة الامتحان في أي وقت.')) + '</p>' +
+        '<div class="qr-actions">' + (passed
+          ? '<button class="btn-primary" type="button" data-res="certs">🎓 ' + t('View certificate', 'عرض الشهادة') + '</button>' +
+            (isLast ? '' : '<button class="btn-ghost" type="button" data-res="next">' + t('Go to the next level →', 'انتقل للمستوى التالي ←') + '</button>')
+          : '<button class="btn-primary" type="button" data-res="retry">' + t('Try again', 'حاول مرة أخرى') + '</button>' +
+            '<button class="btn-ghost" type="button" data-res="books">' + t('Back to the books', 'العودة للكتب') + '</button>') +
+        '</div>';
       if(passed){
+        loadOverviewStats();
+        renderNextStep();
+        confetti();
         toast('🎓 ' + t('Certificate unlocked!', 'حصلت على شهادة!'), t('Find it under Certificates.', 'ستجدها في قسم الشهادات.'));
-        setTimeout(function(){ examPanel.hidden = true; }, 2500);
       }
     });
+  }
+
+  // a short burst of confetti for passed exams
+  function confetti(){
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const colors = ['#5FE0C8', '#C9A227', '#8A2E43', '#F7E4D4', '#3E0F1B'];
+    const wrap = document.createElement('div');
+    wrap.className = 'confetti';
+    for(let i = 0; i < 70; i++){
+      const p = document.createElement('i');
+      p.style.left = Math.random() * 100 + '%';
+      p.style.background = colors[i % colors.length];
+      p.style.animationDelay = Math.random() * 0.6 + 's';
+      p.style.setProperty('--dx', (Math.random() * 160 - 80) + 'px');
+      p.style.setProperty('--r', (Math.random() * 720) + 'deg');
+      wrap.appendChild(p);
+    }
+    document.body.appendChild(wrap);
+    setTimeout(function(){ wrap.remove(); }, 3200);
   }
 
   // ---------- exam question admin (teacher) ----------
@@ -3747,6 +4198,7 @@ if(floaters && window.matchMedia('(pointer:fine)').matches){
     loadReadingHub();
     if(isParent()) loadChildren();
     renderInbox();
+    if(isStudent()){ renderNextStep(); loadMaterials(); }
   };
 
   sb.auth.onAuthStateChange(function(){ refreshSession(); });
@@ -3793,6 +4245,18 @@ revealEls.forEach(el=>revealObserver.observe(el));
 /* ===== Language switcher (EN / AR) ===== */
 (function(){
   const DICT = {
+    "← Back":"→ السابق",
+    "Next →":"التالي ←",
+    "Start the exam":"ابدأ الامتحان",
+    "This level is locked":"هذا المستوى مغلق",
+    "Books":"الكتب",
+    "Every club book, readable right here":"كل كتب النادي، تقرأها هنا مباشرة",
+    "Level exams and printable certificates":"امتحانات مستويات وشهادات قابلة للطباعة",
+    "Parents and teachers, one tap apart":"ولي الأمر والمعلم على بُعد ضغطة",
+    "Beginner (A1–A2) passed":"اجتاز المستوى المبتدئ (A1–A2)",
+    "I want to learn":"أريد أن أتعلّم",
+    "I follow my child":"أتابع ابني",
+    "Parent":"ولي أمر",
     "Welcome back,":"مرحباً بعودتك،",
     "My children":"أبنائي",
     "Messages":"الرسائل",
@@ -3930,7 +4394,7 @@ revealEls.forEach(el=>revealObserver.observe(el));
     "Welcome back":"أهلاً بعودتك",
     "Sign in to reach your dashboard.":"سجّل دخولك للوصول إلى لوحتك.",
     "Create your account":"أنشئ حسابك",
-    "Join as a student or a teacher — it takes a minute.":"انضم كطالب أو معلم — الأمر يستغرق دقيقة.",
+    "Join as a student or a parent — it takes a minute.":"انضم كطالب أو ولي أمر — الأمر يستغرق دقيقة.",
     "Sign up":"إنشاء حساب",
     "Full name":"الاسم الكامل",
     "Email":"البريد الإلكتروني",
