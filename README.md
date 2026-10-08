@@ -7,8 +7,14 @@ Single-page website (`index.html`) with a Supabase backend for accounts, club li
 1. افتح مشروعك في [Supabase](https://supabase.com/dashboard) ← **SQL Editor** ← **New query**.
 2. انسخ محتوى الملف `supabase/schema.sql` كاملاً والصقه، ثم اضغط **Run**.
    الملف آمن للتشغيل أكثر من مرة.
-3. من **Authentication → Providers → Email**: لو فعّلت "Confirm email" فالحساب يُنشأ تلقائياً بعد التأكيد (عن طريق الـ trigger).
-4. ارفع `index.html` على GitHub Pages (فرع `main`) — وبعد النشر اعمل تحديث للصفحة بـ **Ctrl + F5**.
+3. **اجعل نفسك المدير (مرة واحدة):** في SQL Editor شغّل السطر ده بعد ما تحط إيميلك:
+   ```sql
+   update public.profiles set role = 'admin'
+    where id = (select id from auth.users where email = 'you@example.com');
+   ```
+   بعدها ادخل على الموقع وافتح **Users & roles** لترقية المعلمين، وراجع أي حساب "معلم" قديم سجّل نفسه بنفسه.
+4. من **Authentication → Providers → Email**: لو فعّلت "Confirm email" فالحساب يُنشأ تلقائياً بعد التأكيد (عن طريق الـ trigger).
+5. ارفع `index.html` على GitHub Pages (فرع `main`) — وبعد النشر اعمل تحديث للصفحة بـ **Ctrl + F5**.
 
 ### ماذا يضيف `schema.sql`
 | الجزء | الوظيفة |
@@ -19,7 +25,11 @@ Single-page website (`index.html`) with a Supabase backend for accounts, club li
 | `get_exam` / `submit_exam` | تصحيح الامتحان على السيرفر — الإجابة الصحيحة لا تصل للمتصفح أبداً |
 | `club_leaderboard` / `popular_materials` | لوحة أكثر الطلاب قراءة + أكثر الكتب فتحاً |
 | Trigger `on_auth_user_created` | ينشئ الملف الشخصي تلقائياً عند التسجيل |
-| Realtime | الكتب والإشعارات الجديدة تظهر فوراً بدون تحديث الصفحة |
+| Realtime | الكتب والإشعارات والرسائل الجديدة تظهر فوراً بدون تحديث الصفحة |
+| الأدوار | التسجيل للطلاب وأولياء الأمور فقط — المعلم والمدير بترقية من المدير (`set_user_role`) |
+| أولياء الأمور | `parent_links` + `link_child(code)` + `student_report` — ولي الأمر يربط ابنه بكود من ٦ رموز |
+| الرسائل | `messages` + `chat_inbox` — محادثة لكل طالب (الطالب + ولي الأمر + المعلمين) مع رسائل خاصة لا يراها الطالب |
+| الشهادات | `my_certificates` — شهادة لكل مستوى ناجح، جاهزة للطباعة PDF |
 
 ## Upload "Invalid key" fix
 Supabase Storage keys must be plain ASCII. File names such as
@@ -28,6 +38,11 @@ The site now stores files under a safe key (`Conversation_Club/Beginner_A1-A2/<t
 and keeps the original name in `materials.file_name`, which is used as the download file name.
 
 ## Features
+- Roles: student / parent sign up themselves; teacher and admin are granted only by an admin (Users & roles tab)
+- Parent portal: link a child with a 6-character code, see streak, books, exams and teacher notes
+- Messages: one conversation per student between the student, their parents and teachers, live, with private parent–teacher messages
+- Certificates: printable certificate for every level passed
+- Redesigned dashboard (icon sidebar, mobile-first), new landing section for students/parents/teachers, FAQ, scroll progress
 - Drag & drop upload with progress, 50 MB check, auto-filled title and clear error messages (EN/AR)
 - In-site reader for PDF, images, Word/PowerPoint, audio and video
 - Search, "NEW" and "READ" badges, teacher delete
